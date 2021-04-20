@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/themeFragment">
+
+    <fragment
+        android:id="@+id/themeFragment"
+        android:name="com.example.famousquotes.ThemeFragment"
+        android:label="fragment_theme"
+        tools:layout="@layout/fragment_theme" />
+
+    <fragment
+        android:id="@+id/authorsFragment"
+        android:name="com.example.famousquotes.AuthorsFragment"
+        android:label="fragment_authors"
+        tools:layout="@layout/fragment_authors" />
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.famousquotes.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.famousquotes.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.famousquotes.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+
+</navigation>
