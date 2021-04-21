@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".authors_menu.AuthorsFragment">
+    tools:context=".themes_menu.ThemeQuotesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/authorsRV"
+        android:id="@+id/themeQuotesRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
