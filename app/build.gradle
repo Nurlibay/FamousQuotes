@@ -45,6 +45,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // Animated Bottom Bar library
     implementation 'nl.joery.animatedbottombar:library:1.0.9'
 
     def nav_version = "2.3.4"
@@ -55,5 +56,7 @@ dependencies {
 
     def material_version = "1.1.0-alpha07"
     implementation "com.google.android.material:material:$material_version"
+
+    
 
 }

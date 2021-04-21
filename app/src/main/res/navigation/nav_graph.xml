@@ -7,15 +7,27 @@
 
     <fragment
         android:id="@+id/themeFragment"
-        android:name="com.example.famousquotes.ThemeFragment"
+        android:name="com.example.famousquotes.themes_menu.ThemeFragment"
         android:label="fragment_theme"
-        tools:layout="@layout/fragment_theme" />
+        tools:layout="@layout/fragment_theme" >
+
+        <action
+            android:id="@+id/action_themeFragment_to_themeQuotesFragment"
+            app:destination="@id/themeQuotesFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/authorsFragment"
-        android:name="com.example.famousquotes.AuthorsFragment"
+        android:name="com.example.famousquotes.authors_menu.AuthorsFragment"
         android:label="fragment_authors"
-        tools:layout="@layout/fragment_authors" />
+        tools:layout="@layout/fragment_authors" >
+
+        <action
+            android:id="@+id/action_authorsFragment_to_authorQuotesFragment"
+            app:destination="@id/authorQuotesFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/favoriteFragment"
@@ -34,5 +46,17 @@
         android:name="com.example.famousquotes.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/themeQuotesFragment"
+        android:name="com.example.famousquotes.themes_menu.ThemeQuotesFragment"
+        android:label="fragment_theme_quotes"
+        tools:layout="@layout/fragment_theme_quotes" />
+
+    <fragment
+        android:id="@+id/authorQuotesFragment"
+        android:name="com.example.famousquotes.authors_menu.AuthorQuotesFragment"
+        android:label="fragment_author_quotes"
+        tools:layout="@layout/fragment_author_quotes" />
 
 </navigation>
