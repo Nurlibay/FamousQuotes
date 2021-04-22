@@ -63,4 +63,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    // Card View Library
+    implementation "androidx.cardview:cardview:1.0.0"
+
 }

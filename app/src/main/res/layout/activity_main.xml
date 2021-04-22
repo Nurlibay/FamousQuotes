@@ -29,6 +29,7 @@
         app:abb_indicatorHeight="4dp"
         app:abb_indicatorMargin="16dp"
         app:abb_selectedIndex="1"
+        app:abb_textStyle="bold"
         app:abb_tabColor="#A3000000"
         app:abb_indicatorAnimation="slide"
         app:abb_rippleEnabled="true"

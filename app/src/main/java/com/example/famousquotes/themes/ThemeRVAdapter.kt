@@ -1,4 +1,4 @@
-package com.example.famousquotes.themes_menu
+package com.example.famousquotes.themes
 
 import android.view.LayoutInflater
 import kotlinx.android.synthetic.main.themes.view.*
@@ -8,28 +8,31 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
+import com.example.famousquotes.data.entityes.Theme
 
 class ThemeRVAdapter: RecyclerView.Adapter<ThemeRVAdapter.ThemeListViewHolder>() {
 
     var navController: NavController? = null
 
+
+
     inner class ThemeListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun populateModel(themeModel: ThemeModel){
-            itemView.tvTheme.text = themeModel.themeName
+        fun populateModel(theme: Theme){
+            itemView.tvTheme.text = theme.themeName
             itemView.setOnClickListener {
                 navController = Navigation.findNavController(it)
+               // val bundle = bundleOf("id" to )
                 navController!!.navigate(R.id.action_themeFragment_to_themeQuotesFragment)
+
             }
         }
     }
 
-    var models: List<ThemeModel> = listOf()
+    var models: List<Theme> = listOf()
     set(value) {
         field = value
         notifyDataSetChanged()
     }
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThemeListViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.themes, parent, false)
@@ -43,6 +46,5 @@ class ThemeRVAdapter: RecyclerView.Adapter<ThemeRVAdapter.ThemeListViewHolder>()
     override fun onBindViewHolder(holder: ThemeListViewHolder, position: Int) {
         holder.populateModel(models[position])
     }
-
 
 }
