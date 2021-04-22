@@ -5,37 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
 import kotlinx.android.synthetic.main.fragment_theme.*
 
 class ThemeFragment : Fragment() {
-
+    private lateinit var navController: NavController
     private val myAdapter: ThemeRVAdapter = ThemeRVAdapter()
     private lateinit var dao: CitataDao
 
-    companion object{
-        const val TYPE_ID = "typeId"
-        const val DEATH = 1
-        const val EDUCATION = 2
-        const val MONEY = 3
-        const val AGE = 4
-        const val FAMILY = 5
-        const val LOVE = 6
-        const val SUCCESS = 7
-        const val SCIENCE = 8
-        const val SPORTS = 9
-        const val CHANGE = 10
-        const val JOBS = 11
-        const val LIFE = 12
-        const val WAR = 13
-        const val TIME = 14
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -48,7 +32,12 @@ class ThemeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
         themeRV.adapter = myAdapter
+        myAdapter.setOnItemClickListener { themeId->
+            val action = ThemeFragmentDirections.actionThemeFragmentToThemeQuotesFragment(themeId)
+            navController.navigate(action)
+        }
         dao = CitataDatabase.getInstance(requireContext()).dao()
         setData()
     }

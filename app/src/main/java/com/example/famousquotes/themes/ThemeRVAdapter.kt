@@ -14,16 +14,16 @@ class ThemeRVAdapter: RecyclerView.Adapter<ThemeRVAdapter.ThemeListViewHolder>()
 
     var navController: NavController? = null
 
-
+    private var onItemClick: (themeId: Int) -> Unit = {}
+    fun setOnItemClickListener(onItemClick: (themeId: Int) -> Unit) {
+        this.onItemClick = onItemClick
+    }
 
     inner class ThemeListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun populateModel(theme: Theme){
+        fun populateModel(theme: Theme) {
             itemView.tvTheme.text = theme.themeName
             itemView.setOnClickListener {
-                navController = Navigation.findNavController(it)
-               // val bundle = bundleOf("id" to )
-                navController!!.navigate(R.id.action_themeFragment_to_themeQuotesFragment)
-
+                onItemClick.invoke(theme.id)
             }
         }
     }

@@ -5,17 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.famousquotes.R
+import com.example.famousquotes.data.dao.CitataDao
+import com.example.famousquotes.data.database.CitataDatabase
 import kotlinx.android.synthetic.main.fragment_theme_quotes.*
 
 class ThemeQuotesFragment : Fragment() {
 
     private val myAdapter : ThemeQuotesAdapter = ThemeQuotesAdapter()
+    private lateinit var dao: CitataDao
+    private val args: ThemeQuotesFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        dao = CitataDatabase.getInstance(requireContext()).dao()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -28,15 +33,11 @@ class ThemeQuotesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         themeQuotesRV.adapter = myAdapter
         themeQuotesRV.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        setData()
+        setData(args.themeId)
     }
 
-    private fun setData() {
-        val models : MutableList<QuotesModel> = mutableListOf()
-        for (i in 1..50){
-          models.add(QuotesModel("Famous Quotes Text $i", "Author Name $i"))
-        }
-        myAdapter.models = models
+    private fun setData(themeId: Int) {
+        myAdapter.models = dao.getCitataByThemeId(themeId)
     }
 
 }
