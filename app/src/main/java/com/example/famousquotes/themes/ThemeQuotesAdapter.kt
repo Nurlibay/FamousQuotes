@@ -1,4 +1,4 @@
-package com.example.famousquotes.themes_menu
+package com.example.famousquotes.themes
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,4 +1,4 @@
-package com.example.famousquotes.themes_menu
+package com.example.famousquotes.themes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

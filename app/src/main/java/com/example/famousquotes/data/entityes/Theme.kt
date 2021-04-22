@@ -1,11 +1,11 @@
-package com.example.famousquotes._room_dabase.entityes
+package com.example.famousquotes.data.entityes
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "theme")
-data class Themes(
+data class Theme(
     @PrimaryKey val id: Int,
-    @ColumnInfo(name="theme_name") val theme_name: String
+    @ColumnInfo(name="theme_name") val themeName: String
 )

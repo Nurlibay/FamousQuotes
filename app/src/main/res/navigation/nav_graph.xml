@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/themeFragment"
-        android:name="com.example.famousquotes.themes_menu.ThemeFragment"
+        android:name="com.example.famousquotes.themes.ThemeFragment"
         android:label="fragment_theme"
         tools:layout="@layout/fragment_theme" >
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/authorsFragment"
-        android:name="com.example.famousquotes.authors_menu.AuthorsFragment"
+        android:name="com.example.famousquotes.authors.AuthorsFragment"
         android:label="fragment_authors"
         tools:layout="@layout/fragment_authors" >
 
@@ -49,13 +49,13 @@
 
     <fragment
         android:id="@+id/themeQuotesFragment"
-        android:name="com.example.famousquotes.themes_menu.ThemeQuotesFragment"
+        android:name="com.example.famousquotes.themes.ThemeQuotesFragment"
         android:label="fragment_theme_quotes"
         tools:layout="@layout/fragment_theme_quotes" />
 
     <fragment
         android:id="@+id/authorQuotesFragment"
-        android:name="com.example.famousquotes.authors_menu.AuthorQuotesFragment"
+        android:name="com.example.famousquotes.authors.AuthorQuotesFragment"
         android:label="fragment_author_quotes"
         tools:layout="@layout/fragment_author_quotes" />
 

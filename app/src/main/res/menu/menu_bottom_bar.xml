@@ -20,6 +20,7 @@
         android:title="@string/settings"
         android:icon="@drawable/ic_settings"
         />
+
     <item android:id="@+id/aboutFragment"
         android:title="@string/about"
         android:icon="@drawable/ic_info"

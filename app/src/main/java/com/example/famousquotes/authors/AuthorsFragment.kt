@@ -1,4 +1,4 @@
-package com.example.famousquotes.authors_menu
+package com.example.famousquotes.authors
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.famousquotes.R
+import com.example.famousquotes.data.dao.CitataDao
+import com.example.famousquotes.data.database.CitataDatabase
 import kotlinx.android.synthetic.main.fragment_authors.*
 
 class AuthorsFragment : Fragment() {
 
     private val myAdapter : AuthorsRVAdapter = AuthorsRVAdapter()
+    private lateinit var dao: CitataDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,15 +33,12 @@ class AuthorsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         authorsRV.adapter = myAdapter
         authorsRV.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        dao = CitataDatabase.getInstance(requireContext()).dao()
         setData()
     }
 
     private fun setData() {
-        val models: MutableList<AuthorsModel> = mutableListOf()
-        for (i in 1..35){
-            models.add(AuthorsModel("Author Name $i"))
-        }
-        myAdapter.models = models
+        myAdapter.models = dao.getAllTAuthors()
     }
 
 }

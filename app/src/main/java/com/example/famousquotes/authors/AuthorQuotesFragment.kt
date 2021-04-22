@@ -1,4 +1,4 @@
-package com.example.famousquotes.authors_menu
+package com.example.famousquotes.authors
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

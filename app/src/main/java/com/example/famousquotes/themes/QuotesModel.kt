@@ -1,4 +1,4 @@
-package com.example.famousquotes.themes_menu
+package com.example.famousquotes.themes
 
 data class QuotesModel(
     var tvQuotes: String = "",

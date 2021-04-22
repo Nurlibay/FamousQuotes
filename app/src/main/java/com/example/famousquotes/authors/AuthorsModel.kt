@@ -1,4 +1,4 @@
-package com.example.famousquotes.authors_menu
+package com.example.famousquotes.authors
 
 data class AuthorsModel(
     var authorName: String = ""

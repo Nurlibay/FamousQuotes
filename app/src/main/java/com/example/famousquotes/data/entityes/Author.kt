@@ -1,11 +1,11 @@
-package com.example.famousquotes._room_dabase.entityes
+package com.example.famousquotes.data.entityes
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "authors")
-data class Authors(
+data class Author(
     @PrimaryKey val id: Int,
-    @ColumnInfo(name="author_name") val author_name: String
+    @ColumnInfo(name="author_name") val authorName: String
 )
