@@ -2,9 +2,8 @@ package com.example.famousquotes.data.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.example.famousquotes.data.entityes.Author
-import com.example.famousquotes.data.entityes.Citata
-import com.example.famousquotes.data.entityes.Theme
+import androidx.room.Transaction
+import com.example.famousquotes.data.entities.*
 
 @Dao
 interface CitataDao {
@@ -19,4 +18,8 @@ interface CitataDao {
 
     @Query("SELECT * FROM citata WHERE theme_id=:themeId")
     fun getCitataByThemeId(themeId: Int): List<Citata>
+
+    @Transaction
+    @Query("SELECT * FROM citata WHERE theme_id=:themeId")
+    fun getCitataWithAuthorByThemeId(themeId: Int): List<CitataWithAuthor>
 }

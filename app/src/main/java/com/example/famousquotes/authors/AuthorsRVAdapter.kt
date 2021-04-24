@@ -7,7 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
-import com.example.famousquotes.data.entityes.Author
+import com.example.famousquotes.data.entities.Author
 import kotlinx.android.synthetic.main.authors_item.view.*
 
 class AuthorsRVAdapter: RecyclerView.Adapter<AuthorsRVAdapter.AuthorsListViewHolder>() {
