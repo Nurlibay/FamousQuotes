@@ -5,19 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
-import com.example.famousquotes.data.entityes.Citata
+import com.example.famousquotes.data.entities.CitataWithAuthor
 import kotlinx.android.synthetic.main.quotes_item.view.*
 
 class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesViewHolder>() {
 
     inner class ThemeQuotesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun populateModel(quotesModel: Citata){
-            itemView.tvQuotes.text = quotesModel.text
-            itemView.tvAuthor.text = quotesModel.authorId.toString()
+        fun populateModelCitata(citataModel: CitataWithAuthor){
+            itemView.tvQuotes.text = citataModel.citata.text
+            itemView.tvAuthor.text = citataModel.author.authorName
         }
     }
 
-    var models: List<Citata> = listOf()
+    var models: List<CitataWithAuthor> = listOf()
     set(value) {
         field = value
         notifyDataSetChanged()
@@ -33,7 +33,7 @@ class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVie
     }
 
     override fun onBindViewHolder(holder: ThemeQuotesViewHolder, position: Int) {
-        holder.populateModel(models[position])
+        holder.populateModelCitata(models[position])
     }
 
 }

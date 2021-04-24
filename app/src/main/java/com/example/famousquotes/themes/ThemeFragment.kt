@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
 import kotlinx.android.synthetic.main.fragment_theme.*
 
 class ThemeFragment : Fragment() {
+
     private lateinit var navController: NavController
     private val myAdapter: ThemeRVAdapter = ThemeRVAdapter()
     private lateinit var dao: CitataDao
@@ -34,10 +34,12 @@ class ThemeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         themeRV.adapter = myAdapter
+
         myAdapter.setOnItemClickListener { themeId->
             val action = ThemeFragmentDirections.actionThemeFragmentToThemeQuotesFragment(themeId)
             navController.navigate(action)
         }
+
         dao = CitataDatabase.getInstance(requireContext()).dao()
         setData()
     }

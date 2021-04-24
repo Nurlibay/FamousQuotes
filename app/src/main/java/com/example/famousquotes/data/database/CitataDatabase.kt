@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.famousquotes.data.dao.CitataDao
-import com.example.famousquotes.data.entityes.Author
-import com.example.famousquotes.data.entityes.Citata
-import com.example.famousquotes.data.entityes.Theme
+import com.example.famousquotes.data.entities.Author
+import com.example.famousquotes.data.entities.Citata
+import com.example.famousquotes.data.entities.Theme
 
 @Database(entities = [Theme::class, Author::class, Citata::class], version = 1)
 abstract class CitataDatabase: RoomDatabase() {

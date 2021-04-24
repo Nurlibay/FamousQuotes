@@ -52,9 +52,11 @@
         android:name="com.example.famousquotes.themes.ThemeQuotesFragment"
         android:label="fragment_theme_quotes"
         tools:layout="@layout/fragment_theme_quotes" >
+
         <argument
             android:name="themeId"
             app:argType="integer" />
+
     </fragment>
 
     <fragment

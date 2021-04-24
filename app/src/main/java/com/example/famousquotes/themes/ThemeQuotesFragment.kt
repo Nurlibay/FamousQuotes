@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
@@ -16,6 +15,7 @@ class ThemeQuotesFragment : Fragment() {
 
     private val myAdapter : ThemeQuotesAdapter = ThemeQuotesAdapter()
     private lateinit var dao: CitataDao
+
     private val args: ThemeQuotesFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,12 +32,12 @@ class ThemeQuotesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         themeQuotesRV.adapter = myAdapter
-        themeQuotesRV.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         setData(args.themeId)
     }
 
     private fun setData(themeId: Int) {
-        myAdapter.models = dao.getCitataByThemeId(themeId)
+        myAdapter.models = dao.getCitataWithAuthorByThemeId(themeId)
+        //myAdapter.modelAuthor = dao.getAuthorNameById(authorId)
     }
 
 }
