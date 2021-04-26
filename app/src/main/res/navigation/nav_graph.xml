@@ -63,6 +63,11 @@
         android:id="@+id/authorQuotesFragment"
         android:name="com.example.famousquotes.authors.AuthorQuotesFragment"
         android:label="fragment_author_quotes"
-        tools:layout="@layout/fragment_author_quotes" />
+        tools:layout="@layout/fragment_author_quotes" >
+
+        <argument android:name="authorId"
+            app:argType="integer" />
+
+    </fragment>
 
 </navigation>

@@ -5,17 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
+import com.example.famousquotes.data.entities.Citata
 import kotlinx.android.synthetic.main.authors_quotes.view.*
 
 class AuthorQuotesAdapter: RecyclerView.Adapter<AuthorQuotesAdapter.AuthorQuotesViewHolder>() {
 
     inner class AuthorQuotesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun populateModel(authorQuotesModel: AuthorQuotesModel){
-            itemView.quotesText.text = authorQuotesModel.quotesText
+        fun populateModel(citata: Citata){
+            itemView.quotesText.text = citata.text
         }
     }
 
-    var models: List<AuthorQuotesModel> = listOf()
+    var models: List<Citata> = listOf()
     set(value) {
         field = value
         notifyDataSetChanged()

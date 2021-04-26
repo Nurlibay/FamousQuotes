@@ -37,7 +37,6 @@ class ThemeQuotesFragment : Fragment() {
 
     private fun setData(themeId: Int) {
         myAdapter.models = dao.getCitataWithAuthorByThemeId(themeId)
-        //myAdapter.modelAuthor = dao.getAuthorNameById(authorId)
     }
 
 }
