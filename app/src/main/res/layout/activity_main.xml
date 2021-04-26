@@ -30,12 +30,14 @@
         app:abb_indicatorMargin="16dp"
         app:abb_selectedIndex="1"
         app:abb_textStyle="bold"
-        app:abb_tabColor="#A3000000"
+        app:abb_tabColor="@color/white"
+        app:abb_indicatorColor="@color/red"
+        app:abb_tabColorSelected="@color/white"
         app:abb_indicatorAnimation="slide"
         app:abb_rippleEnabled="true"
         app:abb_tabs="@menu/menu_bottom_bar"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="#FFF"
+        android:background="#6000EA"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

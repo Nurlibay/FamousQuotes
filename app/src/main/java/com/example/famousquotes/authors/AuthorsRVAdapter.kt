@@ -3,8 +3,6 @@ package com.example.famousquotes.authors
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
 import com.example.famousquotes.data.entities.Author
@@ -12,14 +10,16 @@ import kotlinx.android.synthetic.main.authors_item.view.*
 
 class AuthorsRVAdapter: RecyclerView.Adapter<AuthorsRVAdapter.AuthorsListViewHolder>() {
 
-    var navController: NavController? = null
+    private var onItemClick: (authorId: Int ) -> Unit = {}
+    fun setOnItemClickListener(onItemClick: (authorId: Int) -> Unit) {
+        this.onItemClick = onItemClick
+    }
 
     inner class AuthorsListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun populateModel(authors: Author){
-            itemView.tvAuthorName.text = authors.authorName
+        fun populateModel(author: Author){
+            itemView.tvAuthorName.text = author.authorName
             itemView.setOnClickListener {
-                navController = Navigation.findNavController(it)
-                navController!!.navigate(R.id.action_authorsFragment_to_authorQuotesFragment)
+                onItemClick.invoke(author.id)
             }
         }
     }

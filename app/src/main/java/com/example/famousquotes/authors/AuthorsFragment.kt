@@ -5,7 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_authors.*
 
 class AuthorsFragment : Fragment() {
 
+    private lateinit var navController: NavController
     private val myAdapter : AuthorsRVAdapter = AuthorsRVAdapter()
     private lateinit var dao: CitataDao
 
@@ -31,8 +33,13 @@ class AuthorsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
         authorsRV.adapter = myAdapter
-        authorsRV.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+
+        myAdapter.setOnItemClickListener { authorId ->
+            val action = AuthorsFragmentDirections.actionAuthorsFragmentToAuthorQuotesFragment(authorId)
+            navController.navigate(action)
+        }
         dao = CitataDatabase.getInstance(requireContext()).dao()
         setData()
     }

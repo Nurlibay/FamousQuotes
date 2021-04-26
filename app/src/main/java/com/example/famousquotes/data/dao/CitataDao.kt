@@ -19,6 +19,9 @@ interface CitataDao {
     @Query("SELECT * FROM citata WHERE theme_id=:themeId")
     fun getCitataByThemeId(themeId: Int): List<Citata>
 
+    @Query("SELECT * FROM citata WHERE author_id=:authorId")
+    fun getCitataByAuthorId(authorId: Int): List<Citata>
+
     @Transaction
     @Query("SELECT * FROM citata WHERE theme_id=:themeId")
     fun getCitataWithAuthorByThemeId(themeId: Int): List<CitataWithAuthor>
