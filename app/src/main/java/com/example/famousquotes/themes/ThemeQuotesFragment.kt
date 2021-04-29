@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.navArgs
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
+import com.example.famousquotes.data.entities.Citata
+import com.example.famousquotes.data.entities.CitataWithAuthor
 import kotlinx.android.synthetic.main.fragment_theme_quotes.*
+import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class ThemeQuotesFragment : Fragment() {
 
@@ -35,6 +39,12 @@ class ThemeQuotesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         themeQuotesRV.adapter = myAdapter
         setData(args.themeId)
+
+        // search function here ...
+        etSearch.addTextChangedListener {
+            val result : List<Citata> = dao.searchCitataByText(args.themeId, "${it.toString()}%")
+            //myAdapter.models = result
+        }
     }
 
     private fun setData(themeId: Int) {
