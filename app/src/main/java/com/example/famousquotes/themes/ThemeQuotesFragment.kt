@@ -43,4 +43,8 @@ class ThemeQuotesFragment : Fragment() {
         myAdapter.models = dao.getCitataWithAuthorByThemeId(themeId)
     }
 
+    fun setFavorite(themeId: Int){
+        //dao.updateCitata()
+    }
+
 }
