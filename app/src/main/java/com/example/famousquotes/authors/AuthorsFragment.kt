@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
+import com.example.famousquotes.data.entities.Author
+import com.example.famousquotes.data.entities.Citata
 import kotlinx.android.synthetic.main.fragment_authors.*
 
 class AuthorsFragment : Fragment() {
@@ -42,6 +45,12 @@ class AuthorsFragment : Fragment() {
         }
         dao = CitataDatabase.getInstance(requireContext()).dao()
         setData()
+
+        // search function here ...
+        etSearchAuthors.addTextChangedListener {
+            val result : List<Author> = dao.searchAuthorByName("${it.toString()}%")
+            myAdapter.models = result
+        }
     }
 
     private fun setData() {
