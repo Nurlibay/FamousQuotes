@@ -40,6 +40,7 @@ class AuthorsFragment : Fragment() {
             val action = AuthorsFragmentDirections.actionAuthorsFragmentToAuthorQuotesFragment(authorId)
             navController.navigate(action)
         }
+
         dao = CitataDatabase.getInstance(requireContext()).dao()
         setData()
     }

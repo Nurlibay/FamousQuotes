@@ -38,6 +38,9 @@ class AuthorQuotesFragment : Fragment() {
         space.spacingItemDecoration(30)
         authorQuotesRV.addItemDecoration(space)
         setData(args.authorId)
+
+
+
     }
 
     private fun setData(authorId: Int) {
