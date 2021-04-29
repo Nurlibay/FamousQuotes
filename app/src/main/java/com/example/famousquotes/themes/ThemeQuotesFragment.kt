@@ -21,6 +21,8 @@ class ThemeQuotesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dao = CitataDatabase.getInstance(requireContext()).dao()
+        // Set title bar
+        //(activity as MainActivity?)!!.setActionBarTitle("Citata")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

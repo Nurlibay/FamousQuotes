@@ -8,8 +8,9 @@
     <fragment
         android:id="@+id/themeFragment"
         android:name="com.example.famousquotes.themes.ThemeFragment"
-        android:label="fragment_theme"
-        tools:layout="@layout/fragment_theme" >
+        tools:layout="@layout/fragment_theme"
+        android:label="Home"
+        >
 
         <action
             android:id="@+id/action_themeFragment_to_themeQuotesFragment"
@@ -20,7 +21,7 @@
     <fragment
         android:id="@+id/authorsFragment"
         android:name="com.example.famousquotes.authors.AuthorsFragment"
-        android:label="fragment_authors"
+        android:label="Authors Fragment"
         tools:layout="@layout/fragment_authors" >
 
         <action
@@ -31,27 +32,28 @@
 
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.famousquotes.FavoriteFragment"
-        android:label="fragment_favorite"
+        android:name="com.example.famousquotes.favorite.FavoriteFragment"
+        android:label="Favorites"
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.famousquotes.SettingsFragment"
-        android:label="fragment_settings"
+        android:name="com.example.famousquotes.settings.SettingsFragment"
+        android:label="Settings"
         tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.famousquotes.AboutFragment"
-        android:label="fragment_about"
+        android:name="com.example.famousquotes.about.AboutFragment"
+        android:label="About"
         tools:layout="@layout/fragment_about" />
 
     <fragment
         android:id="@+id/themeQuotesFragment"
         android:name="com.example.famousquotes.themes.ThemeQuotesFragment"
-        android:label="fragment_theme_quotes"
-        tools:layout="@layout/fragment_theme_quotes" >
+        tools:layout="@layout/fragment_theme_quotes"
+        android:label="Citata"
+        >
 
         <argument
             android:name="themeId"
@@ -62,7 +64,7 @@
     <fragment
         android:id="@+id/authorQuotesFragment"
         android:name="com.example.famousquotes.authors.AuthorQuotesFragment"
-        android:label="fragment_author_quotes"
+        android:label="Authors quotes"
         tools:layout="@layout/fragment_author_quotes" >
 
         <argument android:name="authorId"
