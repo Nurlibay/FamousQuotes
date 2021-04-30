@@ -44,8 +44,8 @@ class ThemeQuotesFragment : Fragment() {
 
         // search function here ...
         etSearch.addTextChangedListener {
-            val result : List<Citata> = dao.searchCitataByText(args.themeId, "${it.toString()}%")
-            //myAdapter.models = result
+            val result : List<CitataWithAuthor> = dao.searchCitataByText(args.themeId, "${it.toString()}%")
+            myAdapter.models = result
         }
     }
 

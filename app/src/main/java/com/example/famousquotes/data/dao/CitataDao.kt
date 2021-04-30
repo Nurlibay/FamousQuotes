@@ -29,7 +29,8 @@ interface CitataDao {
 
     // ThemeQuotesFragment Search Query and Function here ...
     @Query("SELECT * FROM citata WHERE theme_id=:themeId and citata_text LIKE :word")
-    fun searchCitataByText(themeId: Int, word: String): List<Citata>
+    fun searchCitataByText(themeId: Int, word: String): List<CitataWithAuthor>
+
 
     // AuthorsQuotesFragment Search Query and Function here ...
     @Query("SELECT * FROM citata WHERE author_id=:authorId and citata_text LIKE :word")
