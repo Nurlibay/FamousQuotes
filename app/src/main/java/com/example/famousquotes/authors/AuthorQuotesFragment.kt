@@ -41,11 +41,13 @@ class AuthorQuotesFragment : Fragment() {
         authorQuotesRV.addItemDecoration(space)
         setData(args.authorId)
 
+
         // search function here ...
         etSearchQuotes.addTextChangedListener {
             val result : List<Citata> = dao.searchCitataByText(args.authorId, "${it.toString()}%")
             myAdapter.models = result
         }
+
     }
 
     private fun setData(authorId: Int) {
