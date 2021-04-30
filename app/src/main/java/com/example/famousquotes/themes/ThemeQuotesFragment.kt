@@ -3,7 +3,6 @@ package com.example.famousquotes.themes
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
@@ -14,13 +13,12 @@ import com.example.famousquotes.data.database.CitataDatabase
 import com.example.famousquotes.data.entities.Citata
 import com.example.famousquotes.data.entities.CitataWithAuthor
 import kotlinx.android.synthetic.main.fragment_theme_quotes.*
-import kotlinx.android.synthetic.main.quotes_item.*
-import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class ThemeQuotesFragment : Fragment() {
 
     private val myAdapter : ThemeQuotesAdapter = ThemeQuotesAdapter()
     private lateinit var dao: CitataDao
+    lateinit var citata: Citata
 
     private val args: ThemeQuotesFragmentArgs by navArgs()
 
@@ -41,20 +39,32 @@ class ThemeQuotesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         themeQuotesRV.adapter = myAdapter
         setData(args.themeId)
+        citata = dao.citataById(args.themeId)
 
         // search function here ...
         etSearch.addTextChangedListener {
             val result : List<CitataWithAuthor> = dao.searchCitataByText(args.themeId, "${it.toString()}%")
             myAdapter.models = result
         }
+        myAdapter.setOnFavIconClickListener {
+            if (citata.isFavorite == 1) {
+                it.setBackgroundResource(R.drawable.ic_favorite_marked)
+            }else{
+                it.setBackgroundResource(R.drawable.ic_favorite_not_marked)
+            }
+            setFavorite()
+        }
     }
 
     private fun setData(themeId: Int) {
         myAdapter.models = dao.getCitataWithAuthorByThemeId(themeId)
     }
+    private fun setFavorite(){
+      if(citata.isFavorite == null) citata.isFavorite = 1
+        else citata.isFavorite= 1-citata.isFavorite!!
 
-    fun setFavorite(themeId: Int){
-        //dao.updateCitata()
+        dao.citataUpdate(citata)
+
     }
-
+    
 }

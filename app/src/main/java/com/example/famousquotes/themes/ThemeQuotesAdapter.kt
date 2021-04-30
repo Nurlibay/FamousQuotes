@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
 import com.example.famousquotes.data.entities.CitataWithAuthor
+import com.example.famousquotes.favorite.FavoriteFragment
 import kotlinx.android.synthetic.main.quotes_item.view.*
 
 class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesViewHolder>() {
@@ -15,9 +16,14 @@ class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVie
             itemView.tvQuotes.text = citataModel.citata.text
             itemView.tvAuthor.text = citataModel.author.authorName
             itemView.favoriteIcon.setOnClickListener {
-                itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_marked)
+                onFavIconClick.invoke(it)
             }
         }
+    }
+
+    private var onFavIconClick: (view: View) -> Unit = {}
+    fun setOnFavIconClickListener(onFavIconClick: (view: View) -> Unit) {
+        this.onFavIconClick = onFavIconClick
     }
 
     var models: List<CitataWithAuthor> = listOf()

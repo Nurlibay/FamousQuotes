@@ -39,4 +39,10 @@ interface CitataDao {
     // AuthorsFragment Search Query and Function here ...
     @Query("SELECT * FROM authors WHERE author_name LIKE :word")
     fun searchAuthorByName(word: String): List<Author>
+
+    @Update
+    fun citataUpdate(citata: Citata)
+
+    @Query("SELECT * FROM citata WHERE id=:id")
+    fun citataById(id: Int): Citata
 }
