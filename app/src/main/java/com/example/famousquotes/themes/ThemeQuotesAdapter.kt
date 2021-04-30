@@ -14,6 +14,9 @@ class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVie
         fun populateModelCitata(citataModel: CitataWithAuthor){
             itemView.tvQuotes.text = citataModel.citata.text
             itemView.tvAuthor.text = citataModel.author.authorName
+            itemView.favoriteIcon.setOnClickListener {
+                itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_marked)
+            }
         }
     }
 

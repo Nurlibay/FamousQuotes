@@ -3,6 +3,7 @@ package com.example.famousquotes.data.dao
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 import com.example.famousquotes.data.entities.*
 
 @Dao
@@ -37,5 +38,4 @@ interface CitataDao {
     // AuthorsFragment Search Query and Function here ...
     @Query("SELECT * FROM authors WHERE author_name LIKE :word")
     fun searchAuthorByName(word: String): List<Author>
-
 }

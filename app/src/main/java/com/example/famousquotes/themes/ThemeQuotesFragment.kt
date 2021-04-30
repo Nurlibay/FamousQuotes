@@ -3,6 +3,7 @@ package com.example.famousquotes.themes
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
@@ -13,6 +14,7 @@ import com.example.famousquotes.data.database.CitataDatabase
 import com.example.famousquotes.data.entities.Citata
 import com.example.famousquotes.data.entities.CitataWithAuthor
 import kotlinx.android.synthetic.main.fragment_theme_quotes.*
+import kotlinx.android.synthetic.main.quotes_item.*
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class ThemeQuotesFragment : Fragment() {
@@ -49,6 +51,10 @@ class ThemeQuotesFragment : Fragment() {
 
     private fun setData(themeId: Int) {
         myAdapter.models = dao.getCitataWithAuthorByThemeId(themeId)
+    }
+
+    fun setFavorite(themeId: Int){
+        //dao.updateCitata()
     }
 
 }
