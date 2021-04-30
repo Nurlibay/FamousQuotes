@@ -7,11 +7,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".themes.ThemeQuotesFragment">
 
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etSearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@drawable/ic_search"
+        android:padding="8dp"
+        android:layout_margin="16dp"
+        android:inputType="text"
+        android:background="@drawable/search_background"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/themeQuotesRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etSearch"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
