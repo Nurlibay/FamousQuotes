@@ -4,19 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    android:background="@drawable/quotes_with_author_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
-        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,9 +54,8 @@
                     android:id="@+id/copyIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_copy"
                     android:layout_margin="10dp"
-                    />
+                    android:src="@drawable/ic_copy" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/shareIcon"
@@ -80,8 +68,5 @@
             </LinearLayout>
 
         </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

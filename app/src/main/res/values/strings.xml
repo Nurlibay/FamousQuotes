@@ -16,4 +16,6 @@
     <string name="this_is_quotes_text">This is quotes Text</string>
     <string name="author_name">Author Name</string>
     <string name="authors_quotes_text">Authors Quotes Text</string>
+    <string name="search_quotes">Search quotes</string>
+    <string name="search_authors">Search authors</string>
 </resources>

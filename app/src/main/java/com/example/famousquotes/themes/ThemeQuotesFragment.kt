@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.navArgs
 import com.example.famousquotes.R
@@ -46,13 +47,15 @@ class ThemeQuotesFragment : Fragment() {
             val result : List<CitataWithAuthor> = dao.searchCitataByText(args.themeId, "${it.toString()}%")
             myAdapter.models = result
         }
+
+        // fav icon click event
         myAdapter.setOnFavIconClickListener {
-            if (citata.isFavorite == 1) {
-                it.setBackgroundResource(R.drawable.ic_favorite_marked)
-            }else{
-                it.setBackgroundResource(R.drawable.ic_favorite_not_marked)
-            }
             setFavorite()
+        }
+
+        // copy icon click event
+        myAdapter.setOnCopyIconClickListener {
+            Toast.makeText(context, "Successful copied", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -60,11 +63,12 @@ class ThemeQuotesFragment : Fragment() {
         myAdapter.models = dao.getCitataWithAuthorByThemeId(themeId)
     }
     private fun setFavorite(){
-      if(citata.isFavorite == null) citata.isFavorite = 1
-        else citata.isFavorite= 1-citata.isFavorite!!
-
+      if(citata.isFavorite == null) {
+          citata.isFavorite = 1
+      }
+      else {
+          citata.isFavorite= 1 - citata.isFavorite!!
+      }
         dao.citataUpdate(citata)
-
     }
-    
 }
