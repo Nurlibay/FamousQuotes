@@ -1,18 +1,17 @@
-package com.example.famousquotes.themes
+package com.example.famousquotes.favorite
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
-import com.example.famousquotes.data.entities.Citata
 import com.example.famousquotes.data.entities.CitataWithAuthor
 import kotlinx.android.synthetic.main.quotes_item.view.*
 
-class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesViewHolder>() {
+class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteListViewHolder>() {
 
-    inner class ThemeQuotesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun populateModelCitata(citataModel: CitataWithAuthor, onFavIconClick: (citata: Citata) -> Unit){
+    inner class FavoriteListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        fun populateModelCitata(citataModel: CitataWithAuthor) {
             itemView.tvQuotes.text = citataModel.citata.text
             itemView.tvAuthor.text = citataModel.author.authorName
 
@@ -25,12 +24,7 @@ class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVie
 
             // Fav icon clicked
             itemView.favoriteIcon.setOnClickListener {
-                if (citataModel.citata.isFavorite == 0) {
-                    itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_marked)
-                }else{
-                    itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_not_marked)
-                }
-                onFavIconClick.invoke(citataModel.citata)
+                citataModel.citata.isFavorite == 0
             }
 
             // Copy icon clicked
@@ -38,11 +32,12 @@ class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVie
                 onCopyIconClick.invoke(itemView.copyIcon)
             }
         }
+
     }
 
     // fav icon clicked
-    private var onFavIconClick: (citata: Citata) -> Unit = {}
-    fun setOnFavIconClickListener(onFavIconClick: (citata: Citata) -> Unit) {
+    private var onFavIconClick: (view: View) -> Unit = {}
+    fun setOnFavIconClickListener(onFavIconClick: (view: View) -> Unit) {
         this.onFavIconClick = onFavIconClick
     }
 
@@ -52,27 +47,23 @@ class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVie
         this.onCopyIconClick = onCopyIconClick
     }
 
-    var models: List<CitataWithAuthor> = listOf()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThemeQuotesViewHolder {
+    var models: List<CitataWithAuthor> = listOf()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteListViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.quotes_item, parent, false)
-        return ThemeQuotesViewHolder(itemView)
+        return FavoriteListViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-        return models.size
+        return  models.size
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
+    override fun onBindViewHolder(holder: FavoriteListViewHolder, position: Int) {
+        holder.populateModelCitata(models[position])
     }
-    
-    override fun onBindViewHolder(holder: ThemeQuotesViewHolder, position: Int) {
-        holder.populateModelCitata(models[position], onFavIconClick)
-    }
-
 }

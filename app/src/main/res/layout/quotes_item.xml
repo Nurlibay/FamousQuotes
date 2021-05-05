@@ -17,7 +17,7 @@
                 android:id="@+id/tvQuotes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_gravity="start"
                 android:layout_margin="10dp"
                 android:padding="10dp"
                 android:text="@string/this_is_quotes_text"
@@ -28,7 +28,7 @@
                 android:id="@+id/tvAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
@@ -44,23 +44,26 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/favoriteIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_favorite_not_marked"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
                     android:layout_margin="10dp"
+                    android:src="@drawable/ic_favorite_not_marked"
                     />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/copyIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_margin="10dp"
+                    android:padding="8dp"
                     android:src="@drawable/ic_copy" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/shareIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
                     android:src="@drawable/ic_share"
                     android:layout_margin="10dp"
                     />

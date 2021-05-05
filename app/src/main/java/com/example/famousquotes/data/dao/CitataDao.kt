@@ -11,7 +11,7 @@ interface CitataDao {
     @Query("SELECT * FROM theme")
     fun getAllTheme(): List<Theme>
 
-    @Query("SELECT * FROM authors")
+    @Query("SELECT * FROM authors ORDER BY author_name")
     fun getAllTAuthors(): List<Author>
 
     @Query("SELECT * FROM citata")
@@ -23,6 +23,7 @@ interface CitataDao {
     @Query("SELECT * FROM citata WHERE author_id=:authorId")
     fun getCitataByAuthorId(authorId: Int): List<Citata>
 
+
     @Transaction
     @Query("SELECT * FROM citata WHERE theme_id=:themeId")
     fun getCitataWithAuthorByThemeId(themeId: Int): List<CitataWithAuthor>
@@ -30,7 +31,6 @@ interface CitataDao {
     // ThemeQuotesFragment Search Query and Function here ...
     @Query("SELECT * FROM citata WHERE theme_id=:themeId and citata_text LIKE :word")
     fun searchCitataByText(themeId: Int, word: String): List<CitataWithAuthor>
-
 
     // AuthorsQuotesFragment Search Query and Function here ...
     @Query("SELECT * FROM citata WHERE author_id=:authorId and citata_text LIKE :word")
@@ -45,4 +45,7 @@ interface CitataDao {
 
     @Query("SELECT * FROM citata WHERE id=:id")
     fun citataById(id: Int): Citata
+
+    @Query("SELECT * FROM citata WHERE isFavorite=1")
+    fun getFavorites(): List<CitataWithAuthor>
 }

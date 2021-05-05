@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.navArgs
 import com.example.famousquotes.R
@@ -19,7 +18,6 @@ class ThemeQuotesFragment : Fragment() {
 
     private val myAdapter : ThemeQuotesAdapter = ThemeQuotesAdapter()
     private lateinit var dao: CitataDao
-    lateinit var citata: Citata
 
     private val args: ThemeQuotesFragmentArgs by navArgs()
 
@@ -40,7 +38,6 @@ class ThemeQuotesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         themeQuotesRV.adapter = myAdapter
         setData(args.themeId)
-        citata = dao.citataById(args.themeId)
 
         // search function here ...
         etSearch.addTextChangedListener {
@@ -50,25 +47,25 @@ class ThemeQuotesFragment : Fragment() {
 
         // fav icon click event
         myAdapter.setOnFavIconClickListener {
-            setFavorite()
+            setFavorite(it)
         }
 
         // copy icon click event
         myAdapter.setOnCopyIconClickListener {
-            Toast.makeText(context, "Successful copied", Toast.LENGTH_SHORT).show()
+//            val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+//            val clip = ClipData.newPlainText("EditText", citata.text)
+//            clipboard.setPrimaryClip(clip)
+//            Toast.makeText(context, "Successful copied !", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun setData(themeId: Int) {
         myAdapter.models = dao.getCitataWithAuthorByThemeId(themeId)
     }
-    private fun setFavorite(){
-      if(citata.isFavorite == null) {
-          citata.isFavorite = 1
-      }
-      else {
-          citata.isFavorite= 1 - citata.isFavorite!!
-      }
+
+    private fun setFavorite(citata: Citata){
+        citata.isFavorite= 1 - citata.isFavorite
         dao.citataUpdate(citata)
     }
+
 }
