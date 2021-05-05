@@ -11,5 +11,5 @@ data class Citata(
         @ColumnInfo(name="theme_id") val themeId: Int,
         @ColumnInfo(name="author_id") val authorId: Int,
 
-        @ColumnInfo(name="isFavorite") var isFavorite: Int?= 0
+        @ColumnInfo(name="isFavorite") var isFavorite: Int
 )

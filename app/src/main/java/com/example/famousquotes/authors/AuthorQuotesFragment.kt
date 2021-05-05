@@ -11,7 +11,6 @@ import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
 import com.example.famousquotes.data.entities.Citata
-import com.example.famousquotes.data.entities.CitataWithAuthor
 import com.example.famousquotes.items_space.ItemsBetweenSpace
 import kotlinx.android.synthetic.main.fragment_author_quotes.*
 
@@ -54,4 +53,5 @@ class AuthorQuotesFragment : Fragment() {
     private fun setData(authorId: Int) {
         myAdapter.models = dao.getCitataByAuthorId(authorId)
     }
+
 }
