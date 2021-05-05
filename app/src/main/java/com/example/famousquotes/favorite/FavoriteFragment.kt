@@ -1,10 +1,15 @@
 package com.example.famousquotes.favorite
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
@@ -38,6 +43,25 @@ class FavoriteFragment : Fragment() {
             setFavorite(it)
             myAdapter.models = dao.getFavorites()
         }
+
+        myAdapter.setOnCopyIconClickListener { citataText, authorName ->
+            val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("EditText", "${citataText} \n ~ ${authorName}")
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(context, "Successful copied !", Toast.LENGTH_SHORT).show()
+        }
+
+        // share icon click event
+        myAdapter.setOnShareIconClickListener { citataText, authorName ->
+            val shareIntent = Intent().apply {
+                this.action = Intent.ACTION_SEND
+                this.putExtra(Intent.EXTRA_TEXT, "${citataText} \n ~ ${authorName}")
+                this.type = "text/plain"
+            }
+            startActivity(shareIntent)
+        }
+
+
     }
 
     private fun setData() {

@@ -27,16 +27,15 @@ class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteList
                 onFavIconClick.invoke(citataModel.citata)
             }
 
-//            // Fav icon clicked
-//            itemView.favIcon.setOnClickListener {
-//                itemView.favIcon.setImageResource(R.drawable.ic_favorite_not_marked)
-//                citataModel.citata.isFavorite = 0
-//            }
-//
-//            // Copy icon clicked
-//            itemView.copyIcon.setOnClickListener {
-//                onCopyIconClick.invoke(itemView.copyIcon)
-//            }
+            // Copy icon clicked
+            itemView.copyIcon.setOnClickListener {
+                onCopyIconClick.invoke(citataModel.citata.text, citataModel.author.authorName)
+            }
+
+            // Share icon clicked
+            itemView.shareIcon.setOnClickListener {
+                onshareIconClick.invoke(citataModel.citata.text, citataModel.author.authorName)
+            }
         }
 
     }
@@ -48,13 +47,15 @@ class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteList
     }
 
     // fav icon clicked
-    private var onCopyIconClick: (view: View) -> Unit = {}
-    fun setOnCopyIconClickListener(onCopyIconClick: (view: View) -> Unit) {
+    private var onCopyIconClick: (citataName: String, authorName: String) -> Unit = {citataName, authorName ->  }
+    fun setOnCopyIconClickListener(onCopyIconClick: (citataName: String, authorName: String) -> Unit) {
         this.onCopyIconClick = onCopyIconClick
     }
 
-    fun deleteCitata(citataWithAuthor: CitataWithAuthor){
-
+    // share icon lambda
+    private var onshareIconClick: (citataText: String, authorName: String) -> Unit = {citataText, authorName ->  }
+    fun setOnShareIconClickListener(onShareIconClick: (citataText: String, authorName: String) -> Unit) {
+        this.onshareIconClick = onShareIconClick
     }
 
     var models: List<CitataWithAuthor> = listOf()

@@ -19,7 +19,7 @@ class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVie
             if (citataModel.citata.isFavorite == 0) {
                 itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_not_marked)
 
-            }else{
+            } else {
                 itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_marked)
             }
 
@@ -37,19 +37,30 @@ class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVie
             itemView.copyIcon.setOnClickListener {
                 onCopyIconClick.invoke(citataModel.citata.text, citataModel.author.authorName)
             }
+
+            // Share icon clicked
+            itemView.shareIcon.setOnClickListener {
+                onshareIconClick.invoke(citataModel.citata.text, citataModel.author.authorName)
+            }
         }
     }
 
-    // fav icon clicked
+    // fav icon lambda
     private var onFavIconClick: (citata: Citata) -> Unit = {}
     fun setOnFavIconClickListener(onFavIconClick: (citata: Citata) -> Unit) {
         this.onFavIconClick = onFavIconClick
     }
 
-    // fav icon clicked
+    // copy icon lambda
     private var onCopyIconClick: (citataName: String, authorName: String) -> Unit = {citataName, authorName ->  }
     fun setOnCopyIconClickListener(onCopyIconClick: (citataName: String, authorName: String) -> Unit) {
         this.onCopyIconClick = onCopyIconClick
+    }
+
+    // share icon lambda
+    private var onshareIconClick: (citataText: String, authorName: String) -> Unit = {citataText, authorName ->  }
+    fun setOnShareIconClickListener(onShareIconClick: (citataText: String, authorName: String) -> Unit) {
+        this.onshareIconClick = onShareIconClick
     }
 
     var models: List<CitataWithAuthor> = listOf()
