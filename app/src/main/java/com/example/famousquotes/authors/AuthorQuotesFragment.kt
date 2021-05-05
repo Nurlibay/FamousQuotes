@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.navArgs
+import com.example.famousquotes.MainActivity
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
@@ -24,6 +25,9 @@ class AuthorQuotesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dao = CitataDatabase.getInstance(requireContext()).dao()
+
+        //Set title bar
+        (activity as MainActivity?)!!.setActionBarTitle(args.authorName)
     }
 
     override fun onCreateView(
@@ -40,7 +44,6 @@ class AuthorQuotesFragment : Fragment() {
         space.spacingItemDecoration(30)
         authorQuotesRV.addItemDecoration(space)
         setData(args.authorId)
-
 
         // search function here ...
         etSearchQuotes.addTextChangedListener {

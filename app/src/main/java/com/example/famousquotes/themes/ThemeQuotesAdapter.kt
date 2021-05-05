@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
+import com.example.famousquotes.data.entities.Citata
 import com.example.famousquotes.data.entities.CitataWithAuthor
 import kotlinx.android.synthetic.main.quotes_item.view.*
 
@@ -34,7 +35,7 @@ class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVie
 
             // Copy icon clicked
             itemView.copyIcon.setOnClickListener {
-                onCopyIconClick.invoke(itemView.copyIcon)
+                onCopyIconClick.invoke(citataModel.citata.text, citataModel.author.authorName)
             }
         }
     }
@@ -46,8 +47,8 @@ class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVie
     }
 
     // fav icon clicked
-    private var onCopyIconClick: (view: View) -> Unit = {}
-    fun setOnCopyIconClickListener(onCopyIconClick: (view: View) -> Unit) {
+    private var onCopyIconClick: (citataName: String, authorName: String) -> Unit = {citataName, authorName ->  }
+    fun setOnCopyIconClickListener(onCopyIconClick: (citataName: String, authorName: String) -> Unit) {
         this.onCopyIconClick = onCopyIconClick
     }
 

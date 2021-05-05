@@ -10,8 +10,8 @@ import kotlinx.android.synthetic.main.authors_item.view.*
 
 class AuthorsRVAdapter: RecyclerView.Adapter<AuthorsRVAdapter.AuthorsListViewHolder>() {
 
-    private var onItemClick: (authorId: Int ) -> Unit = {}
-    fun setOnItemClickListener(onItemClick: (authorId: Int) -> Unit) {
+    private var onItemClick: (authorId: Int, authorName: String) -> Unit = {authorId, authorName ->  }
+    fun setOnItemClickListener(onItemClick: (authorId: Int, authorName: String) -> Unit) {
         this.onItemClick = onItemClick
     }
 
@@ -19,7 +19,7 @@ class AuthorsRVAdapter: RecyclerView.Adapter<AuthorsRVAdapter.AuthorsListViewHol
         fun populateModel(author: Author){
             itemView.tvAuthorName.text = author.authorName
             itemView.setOnClickListener {
-                onItemClick.invoke(author.id)
+                onItemClick.invoke(author.id, author.authorName)
             }
         }
     }

@@ -12,7 +12,6 @@ import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
 import com.example.famousquotes.data.entities.Author
-import com.example.famousquotes.data.entities.Citata
 import kotlinx.android.synthetic.main.fragment_authors.*
 
 class AuthorsFragment : Fragment() {
@@ -39,8 +38,8 @@ class AuthorsFragment : Fragment() {
         navController = Navigation.findNavController(view)
         authorsRV.adapter = myAdapter
 
-        myAdapter.setOnItemClickListener { authorId ->
-            val action = AuthorsFragmentDirections.actionAuthorsFragmentToAuthorQuotesFragment(authorId)
+        myAdapter.setOnItemClickListener { authorId, authorName ->
+            val action = AuthorsFragmentDirections.actionAuthorsFragmentToAuthorQuotesFragment(authorId, authorName)
             navController.navigate(action)
         }
 

@@ -58,6 +58,9 @@
         <argument
             android:name="themeId"
             app:argType="integer" />
+        <argument
+            android:name="themeName"
+            app:argType="string" />
 
     </fragment>
 
@@ -69,6 +72,9 @@
 
         <argument android:name="authorId"
             app:argType="integer" />
+        <argument
+            android:name="authorName"
+            app:argType="string" />
 
     </fragment>
 

@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
+import com.example.famousquotes.data.entities.Citata
 import com.example.famousquotes.data.entities.CitataWithAuthor
+import kotlinx.android.synthetic.main.favorite_item.view.*
 import kotlinx.android.synthetic.main.quotes_item.view.*
 
 class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteListViewHolder>() {
@@ -14,30 +16,34 @@ class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteList
         fun populateModelCitata(citataModel: CitataWithAuthor) {
             itemView.tvQuotes.text = citataModel.citata.text
             itemView.tvAuthor.text = citataModel.author.authorName
-
             if (citataModel.citata.isFavorite == 0) {
                 itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_not_marked)
 
             }else{
                 itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_marked)
             }
-
-            // Fav icon clicked
             itemView.favoriteIcon.setOnClickListener {
-                citataModel.citata.isFavorite == 0
+                    itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_not_marked)
+                onFavIconClick.invoke(citataModel.citata)
             }
 
-            // Copy icon clicked
-            itemView.copyIcon.setOnClickListener {
-                onCopyIconClick.invoke(itemView.copyIcon)
-            }
+//            // Fav icon clicked
+//            itemView.favIcon.setOnClickListener {
+//                itemView.favIcon.setImageResource(R.drawable.ic_favorite_not_marked)
+//                citataModel.citata.isFavorite = 0
+//            }
+//
+//            // Copy icon clicked
+//            itemView.copyIcon.setOnClickListener {
+//                onCopyIconClick.invoke(itemView.copyIcon)
+//            }
         }
 
     }
 
     // fav icon clicked
-    private var onFavIconClick: (view: View) -> Unit = {}
-    fun setOnFavIconClickListener(onFavIconClick: (view: View) -> Unit) {
+    private var onFavIconClick: (citata: Citata) -> Unit = {}
+    fun setOnFavIconClickListener(onFavIconClick: (citata: Citata) -> Unit) {
         this.onFavIconClick = onFavIconClick
     }
 
@@ -47,6 +53,9 @@ class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteList
         this.onCopyIconClick = onCopyIconClick
     }
 
+    fun deleteCitata(citataWithAuthor: CitataWithAuthor){
+
+    }
 
     var models: List<CitataWithAuthor> = listOf()
         set(value) {

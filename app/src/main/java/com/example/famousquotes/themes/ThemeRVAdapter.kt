@@ -10,8 +10,8 @@ import com.example.famousquotes.data.entities.Theme
 
 class ThemeRVAdapter: RecyclerView.Adapter<ThemeRVAdapter.ThemeListViewHolder>() {
 
-    private var onItemClick: (themeId: Int ) -> Unit = {}
-    fun setOnItemClickListener(onItemClick: (themeId: Int) -> Unit) {
+    private var onItemClick: (themeId: Int, themeName: String) -> Unit = {themeId, themeName ->  }
+    fun setOnItemClickListener(onItemClick: (themeId: Int, themeName: String) -> Unit) {
         this.onItemClick = onItemClick
     }
 
@@ -19,7 +19,7 @@ class ThemeRVAdapter: RecyclerView.Adapter<ThemeRVAdapter.ThemeListViewHolder>()
         fun populateModel(theme: Theme) {
             itemView.tvTheme.text = theme.themeName
             itemView.setOnClickListener {
-                onItemClick.invoke(theme.id)
+                onItemClick.invoke(theme.id, theme.themeName)
             }
         }
     }

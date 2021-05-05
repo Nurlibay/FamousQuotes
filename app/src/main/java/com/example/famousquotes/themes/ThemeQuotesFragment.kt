@@ -1,12 +1,17 @@
 package com.example.famousquotes.themes
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.navArgs
+import com.example.famousquotes.MainActivity
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
@@ -18,14 +23,15 @@ class ThemeQuotesFragment : Fragment() {
 
     private val myAdapter : ThemeQuotesAdapter = ThemeQuotesAdapter()
     private lateinit var dao: CitataDao
+    private lateinit var citata: Citata
 
     private val args: ThemeQuotesFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dao = CitataDatabase.getInstance(requireContext()).dao()
-        // Set title bar
-        //(activity as MainActivity?)!!.setActionBarTitle("Citata")
+         //Set title bar
+        (activity as MainActivity?)!!.setActionBarTitle(args.themeName)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +47,7 @@ class ThemeQuotesFragment : Fragment() {
 
         // search function here ...
         etSearch.addTextChangedListener {
-            val result : List<CitataWithAuthor> = dao.searchCitataByText(args.themeId, "${it.toString()}%")
+            val result : List<CitataWithAuthor> = dao.searchCitataByText(args.themeId, "%${it.toString()}%")
             myAdapter.models = result
         }
 
@@ -51,11 +57,11 @@ class ThemeQuotesFragment : Fragment() {
         }
 
         // copy icon click event
-        myAdapter.setOnCopyIconClickListener {
-//            val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-//            val clip = ClipData.newPlainText("EditText", citata.text)
-//            clipboard.setPrimaryClip(clip)
-//            Toast.makeText(context, "Successful copied !", Toast.LENGTH_SHORT).show()
+        myAdapter.setOnCopyIconClickListener { citataText, authorName ->
+            val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("EditText", "${citataText} \n ~ ${authorName}")
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(context, "Successful copied !", Toast.LENGTH_SHORT).show()
         }
     }
 

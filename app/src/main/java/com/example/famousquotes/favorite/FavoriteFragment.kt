@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
+import com.example.famousquotes.data.entities.Citata
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
 class FavoriteFragment : Fragment() {
@@ -32,10 +33,21 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         favoriteListRV.adapter = myAdapter
         setData()
+
+        myAdapter.setOnFavIconClickListener {
+            setFavorite(it)
+            myAdapter.models = dao.getFavorites()
+        }
     }
 
     private fun setData() {
         myAdapter.models = dao.getFavorites()
     }
+
+    private fun setFavorite(citata: Citata){
+        citata.isFavorite= 1 - citata.isFavorite
+        dao.citataUpdate(citata)
+    }
+
 
 }

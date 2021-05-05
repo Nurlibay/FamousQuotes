@@ -37,8 +37,8 @@ class ThemeFragment : Fragment() {
         navController = Navigation.findNavController(view)
         themeRV.adapter = myAdapter
 
-        myAdapter.setOnItemClickListener { themeId->
-            val action = ThemeFragmentDirections.actionThemeFragmentToThemeQuotesFragment(themeId)
+        myAdapter.setOnItemClickListener { themeId, themeName ->
+            val action = ThemeFragmentDirections.actionThemeFragmentToThemeQuotesFragment(themeId, themeName)
             navController.navigate(action)
         }
 
