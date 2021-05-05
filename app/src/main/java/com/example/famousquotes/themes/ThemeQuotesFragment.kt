@@ -3,6 +3,7 @@ package com.example.famousquotes.themes
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -63,6 +64,17 @@ class ThemeQuotesFragment : Fragment() {
             clipboard.setPrimaryClip(clip)
             Toast.makeText(context, "Successful copied !", Toast.LENGTH_SHORT).show()
         }
+
+        // share icon click event
+        myAdapter.setOnShareIconClickListener { citataText, authorName ->
+            val shareIntent = Intent().apply {
+                this.action = Intent.ACTION_SEND
+                this.putExtra(Intent.EXTRA_TEXT, "${citataText} \n ~ ${authorName}")
+                this.type = "text/plain"
+            }
+            startActivity(shareIntent)
+        }
+
     }
 
     private fun setData(themeId: Int) {

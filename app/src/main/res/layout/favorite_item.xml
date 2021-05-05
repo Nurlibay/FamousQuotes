@@ -52,7 +52,7 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/copyIcon"
+                    android:id="@+id/copyIconFavMenu"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="10dp"
@@ -60,7 +60,7 @@
                     android:src="@drawable/ic_copy" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/shareIcon"
+                    android:id="@+id/shareIconFavMenu"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:padding="8dp"
