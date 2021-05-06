@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
 import com.example.famousquotes.data.entities.Citata
 import com.example.famousquotes.data.entities.CitataWithAuthor
-import kotlinx.android.synthetic.main.favorite_item.view.*
 import kotlinx.android.synthetic.main.quotes_item.view.*
 
 class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteListViewHolder>() {

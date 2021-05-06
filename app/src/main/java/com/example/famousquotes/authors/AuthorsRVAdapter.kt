@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.famousquotes.R
 import com.example.famousquotes.data.entities.Author
 import kotlinx.android.synthetic.main.authors_item.view.*
+import kotlinx.android.synthetic.main.themes.view.*
 
 class AuthorsRVAdapter: RecyclerView.Adapter<AuthorsRVAdapter.AuthorsListViewHolder>() {
 
@@ -21,6 +23,13 @@ class AuthorsRVAdapter: RecyclerView.Adapter<AuthorsRVAdapter.AuthorsListViewHol
             itemView.setOnClickListener {
                 onItemClick.invoke(author.id, author.authorName)
             }
+
+            val imageResName = "author${author.id}"
+            Glide
+                    .with(itemView)
+                    .load(itemView.context.resources.getIdentifier(imageResName, "drawable", itemView.context.packageName))
+                    .into(itemView.authorImage)
+
         }
     }
 

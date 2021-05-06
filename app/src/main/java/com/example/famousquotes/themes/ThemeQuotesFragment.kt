@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.navArgs
 import com.example.famousquotes.MainActivity
+import com.example.famousquotes.items_space.MarginItemDecoration
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
@@ -44,11 +45,15 @@ class ThemeQuotesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         themeQuotesRV.adapter = myAdapter
+        themeQuotesRV.addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.margin_standard)))
         setData(args.themeId)
 
         // search function here ...
         etSearch.addTextChangedListener {
             val result : List<CitataWithAuthor> = dao.searchCitataByText(args.themeId, "%${it.toString()}%")
+            result.forEachIndexed { index, s->
+                result[index].citata.text = s.citata.text.replace(it.toString(), "<b>${it.toString()}</b>", true)
+            }
             myAdapter.models = result
         }
 

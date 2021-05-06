@@ -12,7 +12,6 @@ import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
 import com.example.famousquotes.data.entities.Citata
-import com.example.famousquotes.items_space.ItemsBetweenSpace
 import kotlinx.android.synthetic.main.fragment_author_quotes.*
 
 class AuthorQuotesFragment : Fragment() {
@@ -20,7 +19,6 @@ class AuthorQuotesFragment : Fragment() {
     private val myAdapter : AuthorQuotesAdapter = AuthorQuotesAdapter()
     private lateinit var dao: CitataDao
     private val args: AuthorQuotesFragmentArgs by navArgs()
-    private val space = ItemsBetweenSpace()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +39,6 @@ class AuthorQuotesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         authorQuotesRV.adapter = myAdapter
-        space.spacingItemDecoration(30)
-        authorQuotesRV.addItemDecoration(space)
         setData(args.authorId)
 
         // search function here ...

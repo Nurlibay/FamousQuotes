@@ -1,22 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".settings.SettingsFragment">
+    tools:context=".settings.SettingsFragment"
+    >
 
-    <TextView
-        android:id="@+id/tvAbout"
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/btn_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/settings_fragment"
-        android:textSize="40sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        android:layout_centerInParent="true"
+        app:singleSelection="true"
+        app:selectionRequired="true"
+        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/defaultBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="@string/_default"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            />
+
+        <Button
+            android:id="@+id/darkBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="@string/dark"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            />
+
+        <Button
+            android:id="@+id/lightBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="@string/light"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+</RelativeLayout>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    tools:context=".settings.SettingsFragment"-->
+<!--    >-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvAbout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/settings_fragment"-->
+<!--        android:textSize="40sp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        />-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

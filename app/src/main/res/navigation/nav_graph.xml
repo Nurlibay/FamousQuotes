@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/authorsFragment"
         android:name="com.example.famousquotes.authors.AuthorsFragment"
-        android:label="Authors Fragment"
+        android:label="Authors"
         tools:layout="@layout/fragment_authors" >
 
         <action

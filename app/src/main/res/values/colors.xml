@@ -8,4 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
+
+    <color name="action_bar">#262534</color>
+    <color name="action_bar_top">#262534</color>
+    <color name="bottom_nav_bottom">#262534</color>
+
+
 </resources>
