@@ -5,6 +5,7 @@ import kotlinx.android.synthetic.main.themes.view.*
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.famousquotes.R
 import com.example.famousquotes.data.entities.Theme
 
@@ -18,6 +19,13 @@ class ThemeRVAdapter: RecyclerView.Adapter<ThemeRVAdapter.ThemeListViewHolder>()
     inner class ThemeListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun populateModel(theme: Theme) {
             itemView.tvTheme.text = theme.themeName
+
+            val imageResName = "theme${theme.id}"
+            Glide
+                    .with(itemView)
+                    .load(itemView.context.resources.getIdentifier(imageResName, "drawable", itemView.context.packageName))
+                    .into(itemView.themeIcon)
+
             itemView.setOnClickListener {
                 onItemClick.invoke(theme.id, theme.themeName)
             }

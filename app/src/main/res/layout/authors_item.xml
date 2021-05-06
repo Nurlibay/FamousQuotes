@@ -7,47 +7,43 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
+            android:orientation="horizontal"
             android:layout_gravity="center_horizontal|center_vertical"
             >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/authorImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/circleImageView"
+                app:srcCompat="@drawable/author1"
+                />
 
             <TextView
                 android:id="@+id/tvAuthorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/author_name"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textAllCaps="true"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center"
                 />
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-
+    
 </RelativeLayout>
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tvAuthorName"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="@string/author_name"-->
-    <!--        android:textSize="28sp"-->
-    <!--        android:textColor="@color/black"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        android:gravity="center"-->
-    <!--        android:layout_marginStart="20dp"-->
-    <!--        />-->

@@ -3,6 +3,7 @@ package com.example.famousquotes.themes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
 import com.example.famousquotes.data.entities.Citata
@@ -13,7 +14,7 @@ class ThemeQuotesAdapter: RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVie
 
     inner class ThemeQuotesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun populateModelCitata(citataModel: CitataWithAuthor, onFavIconClick: (citata: Citata) -> Unit){
-            itemView.tvQuotes.text = citataModel.citata.text
+            itemView.tvQuotes.text = HtmlCompat.fromHtml(citataModel.citata.text, HtmlCompat.FROM_HTML_MODE_LEGACY)
             itemView.tvAuthor.text = citataModel.author.authorName
 
             if (citataModel.citata.isFavorite == 0) {
