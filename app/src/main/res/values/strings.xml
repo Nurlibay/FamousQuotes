@@ -7,8 +7,11 @@
     <string name="about">About</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="about_fragment">This android app was developed by Koshkinbaev Nurlibay,
-        a pupil of the TexnoPOS IT school</string>
+
+    <string name="about_fragment">This android app was developed by <u>Koshkinbaev Nurlibay</u>,
+        a pupil of the <font fgcolor="#ff0000"> <a href="https://www.instagram.com/texnopos/">TexnoPOS</a> </font> IT school
+    </string>
+    
     <string name="authors_fragment">Authors Fragment</string>
     <string name="favorite_fragment">Favorite Fragment</string>
     <string name="settings_fragment">Settings Fragment</string>
@@ -22,4 +25,5 @@
     <string name="_default">Default</string>
     <string name="dark">Dark</string>
     <string name="light">Light</string>
+
 </resources>

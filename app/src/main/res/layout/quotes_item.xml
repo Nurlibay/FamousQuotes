@@ -24,6 +24,7 @@
                 android:layout_gravity="start"
                 android:layout_margin="10dp"
                 android:padding="10dp"
+                android:fontFamily="@font/timesbd"
                 android:text="@string/this_is_quotes_text"
                 android:textSize="20sp"
                 />
@@ -37,7 +38,10 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/author_name"
+                android:fontFamily="@font/timesbi"
                 android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/red"
                 />
 
             <LinearLayout

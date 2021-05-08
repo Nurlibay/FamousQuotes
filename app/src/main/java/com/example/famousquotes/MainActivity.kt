@@ -2,6 +2,9 @@ package com.example.famousquotes
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -25,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_bottom_bar, menu)
         bottom_bar.setupWithNavController(menu!!, navController)
         return false
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -34,5 +38,14 @@ class MainActivity : AppCompatActivity() {
     fun setActionBarTitle(title: String?) {
         supportActionBar!!.title = title
     }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when(item.itemId) {
+//            R.id.darkMode -> {
+//                Toast.makeText(this, "Dark Icon Clicked !", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//        return true
+//    }
 
 }

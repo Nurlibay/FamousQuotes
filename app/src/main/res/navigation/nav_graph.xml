@@ -14,7 +14,12 @@
 
         <action
             android:id="@+id/action_themeFragment_to_themeQuotesFragment"
-            app:destination="@id/themeQuotesFragment" />
+            app:destination="@id/themeQuotesFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
 
     </fragment>
 
@@ -26,7 +31,12 @@
 
         <action
             android:id="@+id/action_authorsFragment_to_authorQuotesFragment"
-            app:destination="@id/authorQuotesFragment" />
+            app:destination="@id/authorQuotesFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
 
     </fragment>
 

@@ -48,7 +48,7 @@ class AuthorsFragment : Fragment() {
 
         // search function here ...
         etSearchAuthors.addTextChangedListener {
-            val result : List<Author> = dao.searchAuthorByName("${it.toString()}%")
+            val result : List<Author> = dao.searchAuthorByName("%${it.toString()}%")
             myAdapter.models = result
         }
     }
