@@ -74,6 +74,4 @@ class FavoriteFragment : Fragment() {
         citata.isFavorite= 1 - citata.isFavorite
         dao.citataUpdate(citata)
     }
-
-
 }

@@ -21,7 +21,7 @@ interface CitataDao {
     fun getCitataByThemeId(themeId: Int): List<Citata>
 
     @Query("SELECT * FROM citata WHERE author_id=:authorId")
-    fun getCitataByAuthorId(authorId: Int): List<Citata>
+    fun getCitataByAuthorId(authorId: Int): List<CitataWithAuthor>
 
 
     @Transaction
@@ -34,7 +34,7 @@ interface CitataDao {
 
     // AuthorsQuotesFragment Search Query and Function here ...
     @Query("SELECT * FROM citata WHERE author_id=:authorId and citata_text LIKE :word")
-    fun searchCitataByAuthor(authorId: Int, word: String): List<Citata>
+    fun searchCitataByAuthor(authorId: Int, word: String): List<CitataWithAuthor>
 
     // AuthorsFragment Search Query and Function here ...
     @Query("SELECT * FROM authors WHERE author_name LIKE :word")

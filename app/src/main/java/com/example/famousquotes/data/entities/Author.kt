@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "authors")
 data class Author(
     @PrimaryKey val id: Int,
-    @ColumnInfo(name="author_name") val authorName: String
+    @ColumnInfo(name="author_name") var authorName: String
 )

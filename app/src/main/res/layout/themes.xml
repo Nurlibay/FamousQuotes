@@ -37,6 +37,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textAllCaps="true"
+                android:layout_margin="8dp"
                 />
 
         </LinearLayout>
