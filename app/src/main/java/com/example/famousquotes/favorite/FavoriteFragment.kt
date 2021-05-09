@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.famousquotes.items_space.MarginItemDecoration
 import com.example.famousquotes.R
+import com.example.famousquotes.R.layout.fragment_favorite
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
 import com.example.famousquotes.data.entities.Citata
@@ -32,7 +33,7 @@ class FavoriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false)
+        return inflater.inflate(fragment_favorite, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,11 +45,17 @@ class FavoriteFragment : Fragment() {
         myAdapter.setOnFavIconClickListener {
             setFavorite(it)
             myAdapter.models = dao.getFavorites()
+            if (myAdapter.models.isEmpty()){
+                //favMenu.setBackgroundResource(R.drawable.ic_favorite_not_marked)
+                no_favorites.setText(R.string.no_favorites)
+                no_favorites.textSize = resources.getDimension(R.dimen.no_favorites_text_size)
+                //Toast.makeText(context, "No Favorites", Toast.LENGTH_SHORT).show()
+            }
         }
 
         myAdapter.setOnCopyIconClickListener { citataText, authorName ->
             val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("EditText", "${citataText} \n ~ ${authorName}")
+            val clip = ClipData.newPlainText("EditText", "$citataText \n ~ $authorName")
             clipboard.setPrimaryClip(clip)
             Toast.makeText(context, "Successful copied !", Toast.LENGTH_SHORT).show()
         }
@@ -57,7 +64,7 @@ class FavoriteFragment : Fragment() {
         myAdapter.setOnShareIconClickListener { citataText, authorName ->
             val shareIntent = Intent().apply {
                 this.action = Intent.ACTION_SEND
-                this.putExtra(Intent.EXTRA_TEXT, "${citataText} \n ~ ${authorName}")
+                this.putExtra(Intent.EXTRA_TEXT, "$citataText \n ~ $authorName")
                 this.type = "text/plain"
             }
             startActivity(shareIntent)

@@ -1,16 +1,21 @@
 package com.example.famousquotes.themes
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.famousquotes.MainActivity
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
 import kotlinx.android.synthetic.main.fragment_theme.*
+
 
 class ThemeFragment : Fragment() {
 
@@ -22,6 +27,39 @@ class ThemeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         // Set title bar
         //(activity as MainActivity?)!!.setActionBarTitle("Home")
+
+        val mAlertDialogBuilder = context?.let { AlertDialog.Builder(it) }
+
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+
+                    mAlertDialogBuilder?.setTitle("Famous Quotes")
+                    mAlertDialogBuilder?.setIcon(R.mipmap.ic_launcher)
+                    mAlertDialogBuilder?.setMessage("Are you sure do you want to exit ?")
+                    mAlertDialogBuilder?.setCancelable(false)
+
+                    mAlertDialogBuilder?.setPositiveButton("Yes"){ _, _ ->
+                        //finish
+                        requireActivity().onBackPressed()
+                    }
+
+                    mAlertDialogBuilder?.setNegativeButton("NO"){_, _ ->
+                        mAlertDialogBuilder.setCancelable(true)
+                    }
+
+                    mAlertDialogBuilder?.setNeutralButton("Cancel"){_, _ ->
+                        mAlertDialogBuilder.setCancelable(true)
+                    }
+
+                    val mAlertDialog = mAlertDialogBuilder?.create()
+                    mAlertDialog?.show()
+
+                }
+            }
+
+        (activity as MainActivity).onBackPressedDispatcher.addCallback(this, callback)
+
     }
 
     override fun onCreateView(

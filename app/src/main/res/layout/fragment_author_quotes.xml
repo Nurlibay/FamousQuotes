@@ -7,20 +7,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".authors.AuthorQuotesFragment">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etSearchQuotes"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:drawableStart="@drawable/ic_search"
-        android:padding="8dp"
-        android:layout_margin="16dp"
-        android:inputType="text"
-        android:hint="@string/search_quotes"
-        android:background="@drawable/search_background"
-        />
+        android:hint="@string/search_authors"
+        android:layout_margin="8dp"
+        app:errorEnabled="true"
+        app:endIconMode="clear_text"
+        app:counterMaxLength="30"
+        app:counterEnabled="true"
+        app:helperTextTextColor="@color/red"
+        app:startIconDrawable="@drawable/ic_search"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSearchQuotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:inputType="text"
+            android:padding="8dp"
+            android:maxLength="30"
+            android:textSize="18sp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/authorQuotesRV"
@@ -28,7 +46,7 @@
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/etSearchQuotes"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
