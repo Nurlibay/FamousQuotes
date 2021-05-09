@@ -65,7 +65,7 @@ class ThemeQuotesFragment : Fragment() {
         // copy icon click event
         myAdapter.setOnCopyIconClickListener { citataText, authorName ->
             val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("EditText", "${citataText} \n ~ ${authorName}")
+            val clip = ClipData.newPlainText("EditText", "$citataText \n ~ $authorName")
             clipboard.setPrimaryClip(clip)
             Toast.makeText(context, "Successful copied !", Toast.LENGTH_SHORT).show()
         }
@@ -74,7 +74,7 @@ class ThemeQuotesFragment : Fragment() {
         myAdapter.setOnShareIconClickListener { citataText, authorName ->
             val shareIntent = Intent().apply {
                 this.action = Intent.ACTION_SEND
-                this.putExtra(Intent.EXTRA_TEXT, "${citataText} \n ~ ${authorName}")
+                this.putExtra(Intent.EXTRA_TEXT, "$citataText \n ~ $authorName")
                 this.type = "text/plain"
             }
             startActivity(shareIntent)

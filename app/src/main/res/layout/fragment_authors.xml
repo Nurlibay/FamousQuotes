@@ -7,27 +7,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".authors.AuthorsFragment">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etSearchAuthors"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:drawableStart="@drawable/ic_search"
-        android:padding="8dp"
-        android:layout_margin="16dp"
-        android:inputType="text"
         android:hint="@string/search_authors"
-        android:background="@drawable/search_background"
-        />
+        android:layout_margin="8dp"
+        app:endIconMode="clear_text"
+        app:counterMaxLength="30"
+        app:counterEnabled="true"
+        app:errorEnabled="true"
+        app:helperTextTextColor="@color/red"
+        app:startIconDrawable="@drawable/ic_search"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSearchAuthors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:inputType="text"
+            android:maxLength="30"
+            android:textSize="18sp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/authorsRV"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/etSearchAuthors"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

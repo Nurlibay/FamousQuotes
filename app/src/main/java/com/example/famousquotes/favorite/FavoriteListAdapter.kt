@@ -35,6 +35,7 @@ class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteList
             itemView.shareIcon.setOnClickListener {
                 onshareIconClick.invoke(citataModel.citata.text, citataModel.author.authorName)
             }
+
         }
 
     }

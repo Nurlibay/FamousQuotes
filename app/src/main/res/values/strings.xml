@@ -11,7 +11,7 @@
     <string name="about_fragment">This android app was developed by <u>Koshkinbaev Nurlibay</u>,
         a pupil of the <font fgcolor="#ff0000"> <a href="https://www.instagram.com/texnopos/">TexnoPOS</a> </font> IT school
     </string>
-    
+
     <string name="authors_fragment">Authors Fragment</string>
     <string name="favorite_fragment">Favorite Fragment</string>
     <string name="settings_fragment">Settings Fragment</string>
@@ -25,5 +25,7 @@
     <string name="_default">Default</string>
     <string name="dark">Dark</string>
     <string name="light">Light</string>
+    <string name="no_favorites">No Favorites</string>
+    <string name="empty" />
 
 </resources>

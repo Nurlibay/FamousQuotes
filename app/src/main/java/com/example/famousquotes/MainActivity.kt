@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -46,6 +47,41 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 //        return true
+//    }
+
+
+
+//    override fun onBackPressed() {
+//
+//        val mAlertDialogBuilder = AlertDialog.Builder(this)
+//
+//        mAlertDialogBuilder.setTitle("Famous Quotes")
+//        mAlertDialogBuilder.setIcon(R.mipmap.ic_launcher)
+//        mAlertDialogBuilder.setMessage("Are you sure do you want to exit ?")
+//        mAlertDialogBuilder.setCancelable(false)
+//
+//        mAlertDialogBuilder.setPositiveButton("Yes"){ _, _ ->
+//            //finish()
+//            super.onBackPressed()
+//        }
+//
+//        mAlertDialogBuilder.setNegativeButton("NO"){_, _ ->
+//            mAlertDialogBuilder.setCancelable(true)
+//        }
+//
+//        mAlertDialogBuilder.setNeutralButton("Cancel"){_, _ ->
+//            mAlertDialogBuilder.setCancelable(true)
+//        }
+//
+//        val mAlertDialog = mAlertDialogBuilder.create()
+//        mAlertDialog.show()
+//
+////        if(backPressedTime + 2000 > System.currentTimeMillis()) {
+////            super.onBackPressed()
+////        } else {
+////            Toast.makeText(this, "Press back again to exit app", Toast.LENGTH_SHORT).show()
+////        }
+////        backPressedTime = System.currentTimeMillis()
 //    }
 
 }

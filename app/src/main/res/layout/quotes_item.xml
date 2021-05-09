@@ -24,10 +24,8 @@
                 android:layout_gravity="start"
                 android:layout_margin="10dp"
                 android:padding="10dp"
-                android:fontFamily="@font/timesbd"
                 android:text="@string/this_is_quotes_text"
-                android:textSize="20sp"
-                />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/tvAuthor"

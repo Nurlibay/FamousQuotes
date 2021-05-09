@@ -56,7 +56,7 @@ class AuthorQuotesFragment : Fragment() {
         
         // search function here ...
         etSearchQuotes.addTextChangedListener {
-            val result : List<CitataWithAuthor> = dao.searchCitataByAuthor(args.authorId, "${it.toString()}%")
+            val result : List<CitataWithAuthor> = dao.searchCitataByAuthor(args.authorId, "%${it.toString()}%")
             myAdapter.models = result
         }
 
