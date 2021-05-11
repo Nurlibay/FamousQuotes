@@ -3,6 +3,7 @@ package com.example.famousquotes.favorite
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
 import com.example.famousquotes.data.entities.Citata
@@ -10,6 +11,8 @@ import com.example.famousquotes.data.entities.CitataWithAuthor
 import kotlinx.android.synthetic.main.quotes_item.view.*
 
 class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteListViewHolder>() {
+
+    private var lastPosition = -1
 
     inner class FavoriteListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun populateModelCitata(citataModel: CitataWithAuthor) {
@@ -75,5 +78,17 @@ class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteList
 
     override fun onBindViewHolder(holder: FavoriteListViewHolder, position: Int) {
         holder.populateModelCitata(models[position])
+
+        val animation = AnimationUtils.loadAnimation(holder.itemView.context,
+            if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top)
+        holder.itemView.startAnimation(animation)
+        lastPosition = position
+
     }
+
+    override fun onViewDetachedFromWindow(holder: FavoriteListViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.itemView.clearAnimation()
+    }
+    
 }

@@ -28,4 +28,9 @@
     <string name="no_favorites">No Favorites</string>
     <string name="empty" />
 
+    <string name="telegram">Telegram:  <font fgcolor="#ff0000">
+        <a href="https://t.me/NURLIBAY_KNK">Nurlibay</a>
+        </font>
+    </string>
+
 </resources>
