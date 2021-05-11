@@ -1,4 +1,4 @@
-package com.bizmiz.alishernavoiy
+package com.example.famousquotes
 
 import android.content.Context
 
@@ -19,7 +19,7 @@ class Settings(context: Context) {
         }
     }
 
-    fun isAppDarkMode(): Boolean = prefs.getBoolean(DARK_MODE, false)
+    private fun isAppDarkMode(): Boolean = prefs.getBoolean(DARK_MODE, false)
 
     fun decrementTextSize() {
         prefs.edit().putFloat(TEXT_SIZE, getTextSize() - 2).apply()
@@ -29,7 +29,7 @@ class Settings(context: Context) {
         prefs.edit().putFloat(TEXT_SIZE, getTextSize() + 2).apply()
     }
 
-    fun getTextSize(): Float {
+    private fun getTextSize(): Float {
         return prefs.getFloat(TEXT_SIZE, 18f)
     }
 }
