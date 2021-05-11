@@ -41,7 +41,7 @@ class ThemeFragment : Fragment() {
 
                     mAlertDialogBuilder?.setPositiveButton("Yes"){ _, _ ->
                         //finish
-                        requireActivity().onBackPressed()
+                        requireActivity().finish()
                     }
 
                     mAlertDialogBuilder?.setNegativeButton("NO"){_, _ ->
@@ -58,7 +58,7 @@ class ThemeFragment : Fragment() {
                 }
             }
 
-        (activity as MainActivity).onBackPressedDispatcher.addCallback(this, callback)
+        (requireActivity() as MainActivity).onBackPressedDispatcher.addCallback(this, callback)
 
     }
 

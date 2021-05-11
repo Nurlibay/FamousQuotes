@@ -5,27 +5,26 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.famousquotes.MainActivity
-import com.example.famousquotes.items_space.MarginItemDecoration
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
 import com.example.famousquotes.data.entities.Citata
 import com.example.famousquotes.data.entities.CitataWithAuthor
+import com.example.famousquotes.items_space.MarginItemDecoration
 import kotlinx.android.synthetic.main.fragment_theme_quotes.*
 
 class ThemeQuotesFragment : Fragment() {
 
     private val myAdapter : ThemeQuotesAdapter = ThemeQuotesAdapter()
     private lateinit var dao: CitataDao
-    private lateinit var citata: Citata
 
     private val args: ThemeQuotesFragmentArgs by navArgs()
 
@@ -50,9 +49,17 @@ class ThemeQuotesFragment : Fragment() {
 
         // search function here ...
         etSearch.addTextChangedListener {
-            val result : List<CitataWithAuthor> = dao.searchCitataByText(args.themeId, "%${it.toString()}%")
+            val words = it.toString().split(" ")
+            var searchWord = "%"
+            words.forEach { word ->
+                searchWord += "$word%"
+            }
+            val result : List<CitataWithAuthor> = dao.searchCitataByText(args.themeId, searchWord)
             result.forEachIndexed { index, s->
-                result[index].citata.text = s.citata.text.replace(it.toString(), "<b>${it.toString()}</b>", true)
+                words.forEach {word ->
+                    if (word.isNotBlank() && word.isNotEmpty())
+                        result[index].citata.text = s.citata.text.replace(word, "<b>${word}</b>", true)
+                }
             }
             myAdapter.models = result
         }
@@ -87,8 +94,9 @@ class ThemeQuotesFragment : Fragment() {
     }
 
     private fun setFavorite(citata: Citata){
-        citata.isFavorite= 1 - citata.isFavorite
-        dao.citataUpdate(citata)
+        val curCitata = dao.getCitataById(citata.id)
+        curCitata.isFavorite = 1 - curCitata.isFavorite
+        dao.citataUpdate(curCitata)
     }
 
 }

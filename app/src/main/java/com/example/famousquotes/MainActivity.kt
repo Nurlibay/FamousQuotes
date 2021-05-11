@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -39,6 +40,27 @@ class MainActivity : AppCompatActivity() {
     fun setActionBarTitle(title: String?) {
         supportActionBar!!.title = title
     }
+
+//    override fun onBackPressed() {
+//        if (supportFragmentManager.backStackEntryCount == 1) {
+//            val dialog = AlertDialog.Builder(this)
+//                    .setTitle("Aniq shig'asizba?")
+//                    .setPositiveButton("Awa") { dialog, which ->
+//                        finish()
+//                    }
+//                    .setNegativeButton("Yaq") { dialog, which ->
+//                        dialog.dismiss()
+//                    }
+//                    .setCancelable(false)
+//            dialog.show()
+//        } else {
+//            supportFragmentManager.popBackStackImmediate(
+//                    supportFragmentManager.getBackStackEntryAt(
+//                            1
+//                    ).id, FragmentManager.POP_BACK_STACK_INCLUSIVE
+//            )
+//        }
+//    }
 
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 //        when(item.itemId) {
