@@ -5,15 +5,15 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.navArgs
 import com.example.famousquotes.MainActivity
+import com.example.famousquotes.OnTextSizeChangeListener
 import com.example.famousquotes.R
+import com.example.famousquotes.Settings
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
 import com.example.famousquotes.data.entities.Citata
@@ -23,7 +23,9 @@ import com.example.famousquotes.themes.ThemeQuotesAdapter
 import kotlinx.android.synthetic.main.fragment_author_quotes.*
 import kotlinx.android.synthetic.main.fragment_theme_quotes.*
 
-class AuthorQuotesFragment : Fragment() {
+class AuthorQuotesFragment : Fragment(R.layout.fragment_author_quotes) {
+
+    //private lateinit var settings: Settings
 
     //private val myAdapter : AuthorQuotesAdapter = AuthorQuotesAdapter()
     private val myAdapter : ThemeQuotesAdapter = ThemeQuotesAdapter()
@@ -37,15 +39,9 @@ class AuthorQuotesFragment : Fragment() {
 
         //Set title bar
         (activity as MainActivity?)!!.setActionBarTitle(args.authorName)
+        //setHasOptionsMenu(true)
 
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_author_quotes, container, false)
+        //settings = Settings(requireContext())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -93,5 +89,32 @@ class AuthorQuotesFragment : Fragment() {
         citata.isFavorite= 1 - citata.isFavorite
         dao.citataUpdate(citata)
     }
-    
+
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.text_size, menu)
+//        super.onCreateOptionsMenu(menu, inflater)
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.btn_minus -> {
+//                if (settings.getTextSize() > 12) {
+//                    settings.decrementTextSize()
+//                    onTextSizeChanged(settings.getTextSize())
+//                }
+//            }
+//            R.id.btn_plus -> {
+//                if (settings.getTextSize() < 32) {
+//                    settings.incrementTextSize()
+//                    onTextSizeChanged(settings.getTextSize())
+//                }
+//            }
+//        }
+//        return true
+//    }
+//
+//    override fun onTextSizeChanged(size: Float) {
+//        myAdapter.textSize = size
+//    }
+
 }

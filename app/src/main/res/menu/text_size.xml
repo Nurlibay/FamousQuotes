@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/btn_minus"
+        android:icon="@drawable/ic_minus"
+        android:title="Minus"
+        app:showAsAction="always"
+        />
+
+    <item android:id="@+id/btn_plus"
+        android:icon="@drawable/ic_plus"
+        android:title="Plus"
+        app:showAsAction="always"
+        />
+
+</menu>

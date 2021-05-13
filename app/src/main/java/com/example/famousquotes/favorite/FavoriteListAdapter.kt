@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.quotes_item.view.*
 
 class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteListViewHolder>() {
 
-    private var lastPosition = -1
+    //private var lastPosition = -1
 
     inner class FavoriteListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun populateModelCitata(citataModel: CitataWithAuthor) {
@@ -79,16 +79,16 @@ class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteList
     override fun onBindViewHolder(holder: FavoriteListViewHolder, position: Int) {
         holder.populateModelCitata(models[position])
 
-        val animation = AnimationUtils.loadAnimation(holder.itemView.context,
-            if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top)
-        holder.itemView.startAnimation(animation)
-        lastPosition = position
+//        val animation = AnimationUtils.loadAnimation(holder.itemView.context,
+//            if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top)
+//        holder.itemView.startAnimation(animation)
+//        lastPosition = position
 
     }
 
-    override fun onViewDetachedFromWindow(holder: FavoriteListViewHolder) {
-        super.onViewDetachedFromWindow(holder)
-        holder.itemView.clearAnimation()
-    }
+//    override fun onViewDetachedFromWindow(holder: FavoriteListViewHolder) {
+//        super.onViewDetachedFromWindow(holder)
+//        holder.itemView.clearAnimation()
+//    }
     
 }

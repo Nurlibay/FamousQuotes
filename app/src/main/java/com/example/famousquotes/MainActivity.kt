@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_bottom_bar, menu)
         bottom_bar.setupWithNavController(menu!!, navController)
         return false
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
