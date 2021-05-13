@@ -29,7 +29,7 @@ class Settings(context: Context) {
         prefs.edit().putFloat(TEXT_SIZE, getTextSize() + 2).apply()
     }
 
-    private fun getTextSize(): Float {
+    fun getTextSize(): Float {
         return prefs.getFloat(TEXT_SIZE, 18f)
     }
 }

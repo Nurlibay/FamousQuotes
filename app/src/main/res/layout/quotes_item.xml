@@ -25,22 +25,23 @@
                 android:layout_margin="10dp"
                 android:padding="10dp"
                 android:text="@string/this_is_quotes_text"
-                android:textSize="24sp" />
+                android:textSize="28sp"
+                android:textIsSelectable="true"
+                />
 
             <TextView
                 android:id="@+id/tvAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/author_name"
                 android:fontFamily="@font/timesbi"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:text="@string/author_name"
                 android:textColor="@color/red"
-                />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

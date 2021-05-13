@@ -13,13 +13,19 @@ import kotlinx.android.synthetic.main.quotes_item.view.*
 
 class ThemeQuotesAdapter : RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesViewHolder>() {
 
-    private var lastPosition = -1
+    //private var lastPosition = -1
+//    var textSize = 0f
+//    set(value) {
+//        field = value
+//        notifyDataSetChanged()
+//    }
 
     inner class ThemeQuotesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun populateModelCitata(citataModel: CitataWithAuthor, onFavIconClick: (citata: Citata) -> Unit) {
             itemView.tvQuotes.text = HtmlCompat.fromHtml(citataModel.citata.text, HtmlCompat.FROM_HTML_MODE_LEGACY)
             itemView.tvAuthor.text = citataModel.author.authorName
-
+//            itemView.tvQuotes.textSize = textSize
+//            itemView.tvAuthor.textSize = textSize
             if (citataModel.citata.isFavorite == 0) {
                 itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_not_marked)
 
@@ -89,16 +95,16 @@ class ThemeQuotesAdapter : RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVi
     override fun onBindViewHolder(holder: ThemeQuotesViewHolder, position: Int) {
         holder.populateModelCitata(models[position], onFavIconClick)
 
-        val animation = AnimationUtils.loadAnimation(holder.itemView.context,
-                if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top)
-        holder.itemView.startAnimation(animation)
-        lastPosition = position
+//        val animation = AnimationUtils.loadAnimation(holder.itemView.context,
+//                if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top)
+//        holder.itemView.startAnimation(animation)
+//        lastPosition = position
 
     }
 
-    override fun onViewDetachedFromWindow(holder: ThemeQuotesViewHolder) {
-        super.onViewDetachedFromWindow(holder)
-        holder.itemView.clearAnimation()
-    }
+//    override fun onViewDetachedFromWindow(holder: ThemeQuotesViewHolder) {
+//        super.onViewDetachedFromWindow(holder)
+//        holder.itemView.clearAnimation()
+//    }
 
 }
