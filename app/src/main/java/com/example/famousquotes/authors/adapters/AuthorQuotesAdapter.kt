@@ -1,4 +1,4 @@
-package com.example.famousquotes.authors
+package com.example.famousquotes.authors.adapters
 
 import android.view.LayoutInflater
 import android.view.View

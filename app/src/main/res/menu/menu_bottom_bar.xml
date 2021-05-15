@@ -17,10 +17,10 @@
         android:icon="@drawable/ic_favorite"
         />
 
-    <item android:id="@+id/settingsFragment"
-        android:title="@string/settings"
-        android:icon="@drawable/ic_settings"
-        />
+<!--    <item android:id="@+id/settingsFragment"-->
+<!--        android:title="@string/settings"-->
+<!--        android:icon="@drawable/ic_settings"-->
+<!--        />-->
 
     <item android:id="@+id/aboutFragment"
         android:title="@string/about"

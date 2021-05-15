@@ -1,4 +1,4 @@
-package com.example.famousquotes.authors
+package com.example.famousquotes.authors.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.example.famousquotes.R
 import com.example.famousquotes.data.entities.Author
 import kotlinx.android.synthetic.main.authors_item.view.*
-import kotlinx.android.synthetic.main.themes.view.*
 
 class AuthorsRVAdapter: RecyclerView.Adapter<AuthorsRVAdapter.AuthorsListViewHolder>() {
 

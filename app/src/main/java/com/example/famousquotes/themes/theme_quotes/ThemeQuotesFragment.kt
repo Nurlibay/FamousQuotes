@@ -1,4 +1,4 @@
-package com.example.famousquotes.themes
+package com.example.famousquotes.themes.theme_quotes
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -11,24 +11,20 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.famousquotes.MainActivity
-import com.example.famousquotes.OnTextSizeChangeListener
 import com.example.famousquotes.R
-import com.example.famousquotes.Settings
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
-import com.example.famousquotes.data.entities.Citata
 import com.example.famousquotes.data.entities.CitataWithAuthor
 import com.example.famousquotes.items_space.MarginItemDecoration
+import com.example.famousquotes.themes.adapters.ThemeQuotesAdapter
 import kotlinx.android.synthetic.main.fragment_theme_quotes.*
-import kotlinx.android.synthetic.main.quotes_item.*
 
-class ThemeQuotesFragment : Fragment(R.layout.fragment_theme_quotes) {
+class ThemeQuotesFragment : Fragment(R.layout.fragment_theme_quotes), ThemeQuotesView {
 
-    //private lateinit var settings: Settings
-
+    //todo private lateinit var settings: Settings
     private val myAdapter: ThemeQuotesAdapter = ThemeQuotesAdapter()
     private lateinit var dao: CitataDao
-
+    private lateinit var themeQuotesPresenter: ThemeQuotesPresenter
     private val args: ThemeQuotesFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,9 +33,7 @@ class ThemeQuotesFragment : Fragment(R.layout.fragment_theme_quotes) {
         //Set title bar
         (requireActivity() as MainActivity).setActionBarTitle(args.themeName)
         //setHasOptionsMenu(true)
-
         //settings = Settings(requireContext())
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,7 +41,8 @@ class ThemeQuotesFragment : Fragment(R.layout.fragment_theme_quotes) {
         themeQuotesRV.adapter = myAdapter
         //myAdapter.textSize = settings.getTextSize()
         themeQuotesRV.addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.margin_standard)))
-        setData(args.themeId)
+        themeQuotesPresenter = ThemeQuotesPresenter(dao, this)
+        themeQuotesPresenter.getCitataWithAuthorByThemeId(args.themeId)
 
         // search function here ...
         etSearch.addTextChangedListener {
@@ -56,19 +51,14 @@ class ThemeQuotesFragment : Fragment(R.layout.fragment_theme_quotes) {
             words.forEach { word ->
                 searchWord += "$word%"
             }
-            val result: List<CitataWithAuthor> = dao.searchCitataByText(args.themeId, searchWord)
-            result.forEachIndexed { index, s ->
-                words.forEach { word ->
-                    if (word.isNotBlank() && word.isNotEmpty())
-                        result[index].citata.text = s.citata.text.replace(word, "<b>${word}</b>", true)
-                }
-            }
-            myAdapter.models = result
+            //val result: List<CitataWithAuthor> = dao.searchCitataByText(args.themeId, searchWord)
+            themeQuotesPresenter.searchCitataByText(args.themeId, searchWord, words)
         }
 
         // fav icon click event
         myAdapter.setOnFavIconClickListener {
-            setFavorite(it)
+            it.isFavorite = 1 - it.isFavorite
+            themeQuotesPresenter.setFavorite(it)
         }
 
         // copy icon click event
@@ -91,15 +81,20 @@ class ThemeQuotesFragment : Fragment(R.layout.fragment_theme_quotes) {
 
     }
 
-    private fun setData(themeId: Int) {
-        myAdapter.models = dao.getCitataWithAuthorByThemeId(themeId)
+    override fun setSearchResult(words: List<String>, result: List<CitataWithAuthor>) {
+        result.forEachIndexed { index, s ->
+            words.forEach { word ->
+                if (word.isNotBlank() && word.isNotEmpty())
+                    result[index].citata.text = s.citata.text.replace(word, "<b>${word}</b>", true)
+            }
+        }
+        myAdapter.models = result
     }
 
-    private fun setFavorite(citata: Citata) {
-        val curCitata = dao.getCitataById(citata.id)
-        curCitata.isFavorite = 1 - curCitata.isFavorite
-        dao.citataUpdate(curCitata)
+    override fun setData(models: List<CitataWithAuthor>) {
+        myAdapter.models = models
     }
+}
 
 //    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 //        inflater.inflate(R.menu.text_size, menu)
@@ -127,5 +122,3 @@ class ThemeQuotesFragment : Fragment(R.layout.fragment_theme_quotes) {
 //    override fun onTextSizeChanged(size: Float) {
 //        myAdapter.textSize = size
 //    }
-
-}

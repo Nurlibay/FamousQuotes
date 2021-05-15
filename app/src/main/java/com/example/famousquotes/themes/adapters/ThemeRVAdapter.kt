@@ -1,4 +1,4 @@
-package com.example.famousquotes.themes
+package com.example.famousquotes.themes.adapters
 
 import android.view.LayoutInflater
 import kotlinx.android.synthetic.main.themes.view.*

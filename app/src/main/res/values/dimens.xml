@@ -2,4 +2,5 @@
 <resources>
     <dimen name="margin_standard">16dp</dimen>
     <dimen name="no_favorites_text_size">24dp</dimen>
+    <dimen name="button_radius_large">50dp</dimen>
 </resources>
