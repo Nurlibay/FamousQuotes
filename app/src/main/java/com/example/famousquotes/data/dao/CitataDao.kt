@@ -14,8 +14,8 @@ interface CitataDao {
     @Query("SELECT * FROM citata WHERE id=:id")
     fun getCitataById(id: Int): Citata
 
-    @Query("SELECT * FROM authors ORDER BY author_name")
-    fun getAllTAuthors(): List<Author>
+    @Query("SELECT * FROM authors")
+    fun getAllAuthors(): List<Author>
 
     @Query("SELECT * FROM citata")
     fun getAllCitata(): List<Citata>

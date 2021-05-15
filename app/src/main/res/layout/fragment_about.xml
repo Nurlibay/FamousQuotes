@@ -4,35 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bottom_nav_bottom"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".about.AboutFragment">
 
     <TextView
         android:id="@+id/about_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/about_fragment"
-        android:textSize="24sp"
-        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/times"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="100dp"
         android:gravity="center"
         />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/gmail"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/about_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/about_text"
         android:layout_marginTop="20dp"
-        android:text="@string/telegram"
-        android:textSize="24sp"
-        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:fontFamily="@font/times"
+        android:text="@string/gmail"
+        android:textColor="@color/black"
+        android:gravity="center"
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
