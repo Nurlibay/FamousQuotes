@@ -78,10 +78,12 @@ class FavoriteFragment : Fragment(), FavoriteView {
 
     private fun setFavorite(citata: Citata){
         citata.isFavorite= 1 - citata.isFavorite
-        dao.citataUpdate(citata)
+        //dao.citataUpdate(citata)
+        favoritePresenter.setFavorite(citata)
     }
     
     override fun setData(models: List<CitataWithAuthor>) {
         myAdapter.models = models
     }
+
 }
