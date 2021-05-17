@@ -48,8 +48,9 @@ class AuthorQuotesFragment : Fragment(R.layout.fragment_author_quotes), AuthorQu
         
         // search function here ...
         etSearchQuotes.addTextChangedListener {
-            val result : List<CitataWithAuthor> = dao.searchCitataByAuthor(args.authorId, "%${it.toString()}%")
-            myAdapter.models = result
+//            val result : List<CitataWithAuthor> = dao.searchCitataByAuthor(args.authorId, "%${it.toString()}%")
+//            myAdapter.models = result
+            authorQuotesPresenter.searchCitataByAuthor(args.authorId, "%${it.toString()}%")
         }
 
         // fav icon click event
@@ -79,10 +80,14 @@ class AuthorQuotesFragment : Fragment(R.layout.fragment_author_quotes), AuthorQu
 
     private fun setFavorite(citata: Citata){
         citata.isFavorite= 1 - citata.isFavorite
-        dao.citataUpdate(citata)
+        authorQuotesPresenter.setFavorite(citata)
     }
 
     override fun setData(models: List<CitataWithAuthor>) {
+        myAdapter.models = models
+    }
+
+    override fun searchCitataByAuthor(models: List<CitataWithAuthor>) {
         myAdapter.models = models
     }
 

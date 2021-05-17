@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/search_authors"
+        android:hint="@string/search_quotes"
         android:layout_margin="8dp"
         app:errorEnabled="true"
         app:endIconMode="clear_text"

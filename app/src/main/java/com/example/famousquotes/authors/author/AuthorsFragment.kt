@@ -30,18 +30,26 @@ class AuthorsFragment : Fragment(R.layout.fragment_authors), AuthorView {
         authorPresenter.getAllAuthors()
 
         myAdapter.setOnItemClickListener { authorId, authorName ->
-            val action = AuthorsFragmentDirections.actionAuthorsFragmentToAuthorQuotesFragment(authorId, authorName)
+            val action = AuthorsFragmentDirections.actionAuthorsFragmentToAuthorQuotesFragment(
+                authorId,
+                authorName
+            )
             navController.navigate(action)
         }
 
         // search function here ...
         etSearchAuthors.addTextChangedListener {
-            val result : List<Author> = dao.searchAuthorByName("%${it.toString()}%")
-            myAdapter.models = result
+//            val result: List<Author> = dao.searchAuthorByName("%${it.toString()}%")
+//            myAdapter.models = result
+            authorPresenter.searchAuthorByName("%${it.toString()}%")
         }
     }
 
     override fun setData(models: List<Author>) {
+        myAdapter.models = models
+    }
+
+    override fun searchAuthorByName(models: List<Author>) {
         myAdapter.models = models
     }
 

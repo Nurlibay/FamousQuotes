@@ -25,7 +25,7 @@ class FavoriteListAdapter: RecyclerView.Adapter<FavoriteListAdapter.FavoriteList
                 itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_marked)
             }
             itemView.favoriteIcon.setOnClickListener {
-                    itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_not_marked)
+                itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_not_marked)
                 onFavIconClick.invoke(citataModel.citata)
             }
 
