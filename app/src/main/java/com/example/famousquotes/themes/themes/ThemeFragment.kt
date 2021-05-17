@@ -1,9 +1,7 @@
-package com.example.famousquotes.themes
+package com.example.famousquotes.themes.themes
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -13,14 +11,17 @@ import com.example.famousquotes.MainActivity
 import com.example.famousquotes.R
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
+import com.example.famousquotes.data.entities.Theme
+//import com.example.famousquotes.themes.ThemeFragmentDirections
+import com.example.famousquotes.themes.adapters.ThemeRVAdapter
 import kotlinx.android.synthetic.main.fragment_theme.*
 
-
-class ThemeFragment : Fragment() {
+class ThemeFragment : Fragment(R.layout.fragment_theme), ThemeView {
 
     private lateinit var navController: NavController
     private val myAdapter: ThemeRVAdapter = ThemeRVAdapter()
     private lateinit var dao: CitataDao
+    private lateinit var themePresenter: ThemePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,43 +31,35 @@ class ThemeFragment : Fragment() {
         val mAlertDialogBuilder = context?.let { AlertDialog.Builder(it) }
 
         val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
 
-                    mAlertDialogBuilder?.setTitle("Famous Quotes")
-                    mAlertDialogBuilder?.setIcon(R.mipmap.ic_launcher)
-                    mAlertDialogBuilder?.setMessage("Are you sure do you want to exit ?")
-                    mAlertDialogBuilder?.setCancelable(false)
+                        mAlertDialogBuilder?.setTitle("Famous Quotes")
+                        mAlertDialogBuilder?.setIcon(R.mipmap.ic_launcher)
+                        mAlertDialogBuilder?.setMessage("Are you sure do you want to exit ?")
+                        mAlertDialogBuilder?.setCancelable(false)
 
-                    mAlertDialogBuilder?.setPositiveButton("Yes"){ _, _ ->
-                        //finish
-                        requireActivity().finish()
+                        mAlertDialogBuilder?.setPositiveButton("Yes") { _, _ ->
+                            //finish
+                            requireActivity().finish()
+                        }
+
+                        mAlertDialogBuilder?.setNegativeButton("NO") { _, _ ->
+                            mAlertDialogBuilder.setCancelable(true)
+                        }
+
+                        mAlertDialogBuilder?.setNeutralButton("Cancel") { _, _ ->
+                            mAlertDialogBuilder.setCancelable(true)
+                        }
+
+                        val mAlertDialog = mAlertDialogBuilder?.create()
+                        mAlertDialog?.show()
+
                     }
-
-                    mAlertDialogBuilder?.setNegativeButton("NO"){_, _ ->
-                        mAlertDialogBuilder.setCancelable(true)
-                    }
-
-                    mAlertDialogBuilder?.setNeutralButton("Cancel"){_, _ ->
-                        mAlertDialogBuilder.setCancelable(true)
-                    }
-
-                    val mAlertDialog = mAlertDialogBuilder?.create()
-                    mAlertDialog?.show()
-
                 }
-            }
 
         (requireActivity() as MainActivity).onBackPressedDispatcher.addCallback(this, callback)
 
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_theme, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,11 +73,12 @@ class ThemeFragment : Fragment() {
         }
 
         dao = CitataDatabase.getInstance(requireContext()).dao()
-        setData()
+        themePresenter = ThemePresenter(dao, this)
+        themePresenter.getAllThemes()
     }
 
-    private fun setData(){
-        myAdapter.models = dao.getAllTheme()
+    override fun setData(models: List<Theme>) {
+        myAdapter.models = models
     }
 
 }

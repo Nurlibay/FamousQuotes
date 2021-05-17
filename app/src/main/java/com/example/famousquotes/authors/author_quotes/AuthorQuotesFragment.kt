@@ -1,4 +1,4 @@
-package com.example.famousquotes.authors
+package com.example.famousquotes.authors.author_quotes
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -11,25 +11,21 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.navArgs
 import com.example.famousquotes.MainActivity
-import com.example.famousquotes.OnTextSizeChangeListener
 import com.example.famousquotes.R
-import com.example.famousquotes.Settings
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
 import com.example.famousquotes.data.entities.Citata
 import com.example.famousquotes.data.entities.CitataWithAuthor
 import com.example.famousquotes.items_space.MarginItemDecoration
-import com.example.famousquotes.themes.ThemeQuotesAdapter
+import com.example.famousquotes.themes.adapters.ThemeQuotesAdapter
 import kotlinx.android.synthetic.main.fragment_author_quotes.*
-import kotlinx.android.synthetic.main.fragment_theme_quotes.*
 
-class AuthorQuotesFragment : Fragment(R.layout.fragment_author_quotes) {
+class AuthorQuotesFragment : Fragment(R.layout.fragment_author_quotes), AuthorQuotesView {
 
     //private lateinit var settings: Settings
-
     //private val myAdapter : AuthorQuotesAdapter = AuthorQuotesAdapter()
     private val myAdapter : ThemeQuotesAdapter = ThemeQuotesAdapter()
-
+    private lateinit var authorQuotesPresenter: AuthorQuotesPresenter
     private lateinit var dao: CitataDao
     private val args: AuthorQuotesFragmentArgs by navArgs()
 
@@ -40,7 +36,6 @@ class AuthorQuotesFragment : Fragment(R.layout.fragment_author_quotes) {
         //Set title bar
         (activity as MainActivity?)!!.setActionBarTitle(args.authorName)
         //setHasOptionsMenu(true)
-
         //settings = Settings(requireContext())
     }
 
@@ -48,12 +43,14 @@ class AuthorQuotesFragment : Fragment(R.layout.fragment_author_quotes) {
         super.onViewCreated(view, savedInstanceState)
         authorQuotesRV.adapter = myAdapter
         authorQuotesRV.addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.margin_standard)))
-        setData(args.authorId)
+        authorQuotesPresenter = AuthorQuotesPresenter(dao, this)
+        authorQuotesPresenter.getCitataByAuthorId(args.authorId)
         
         // search function here ...
         etSearchQuotes.addTextChangedListener {
-            val result : List<CitataWithAuthor> = dao.searchCitataByAuthor(args.authorId, "%${it.toString()}%")
-            myAdapter.models = result
+//            val result : List<CitataWithAuthor> = dao.searchCitataByAuthor(args.authorId, "%${it.toString()}%")
+//            myAdapter.models = result
+            authorQuotesPresenter.searchCitataByAuthor(args.authorId, "%${it.toString()}%")
         }
 
         // fav icon click event
@@ -81,13 +78,17 @@ class AuthorQuotesFragment : Fragment(R.layout.fragment_author_quotes) {
 
     }
 
-    private fun setData(authorId: Int) {
-        myAdapter.models = dao.getCitataByAuthorId(authorId)
-    }
-
     private fun setFavorite(citata: Citata){
         citata.isFavorite= 1 - citata.isFavorite
-        dao.citataUpdate(citata)
+        authorQuotesPresenter.setFavorite(citata)
+    }
+
+    override fun setData(models: List<CitataWithAuthor>) {
+        myAdapter.models = models
+    }
+
+    override fun searchCitataByAuthor(models: List<CitataWithAuthor>) {
+        myAdapter.models = models
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -2,12 +2,7 @@ package com.example.famousquotes
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -36,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         navController.navigateUp()
         return true
     }
+
     fun setActionBarTitle(title: String?) {
         supportActionBar!!.title = title
     }

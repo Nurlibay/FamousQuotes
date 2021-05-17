@@ -16,12 +16,14 @@ import com.example.famousquotes.R.layout.fragment_favorite
 import com.example.famousquotes.data.dao.CitataDao
 import com.example.famousquotes.data.database.CitataDatabase
 import com.example.famousquotes.data.entities.Citata
+import com.example.famousquotes.data.entities.CitataWithAuthor
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : Fragment(), FavoriteView {
 
     private val myAdapter : FavoriteListAdapter = FavoriteListAdapter()
     private lateinit var dao : CitataDao
+    private lateinit var favoritePresenter: FavoritePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,8 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         favoriteListRV.adapter = myAdapter
         favoriteListRV.addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.margin_standard)))
-        setData()
+        favoritePresenter = FavoritePresenter(dao, this)
+        favoritePresenter.getFavorites()
 
         myAdapter.setOnFavIconClickListener {
             setFavorite(it)
@@ -73,12 +76,12 @@ class FavoriteFragment : Fragment() {
 
     }
 
-    private fun setData() {
-        myAdapter.models = dao.getFavorites()
-    }
-
     private fun setFavorite(citata: Citata){
         citata.isFavorite= 1 - citata.isFavorite
         dao.citataUpdate(citata)
+    }
+    
+    override fun setData(models: List<CitataWithAuthor>) {
+        myAdapter.models = models
     }
 }

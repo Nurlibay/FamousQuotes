@@ -1,9 +1,8 @@
-package com.example.famousquotes.themes
+package com.example.famousquotes.themes.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousquotes.R
