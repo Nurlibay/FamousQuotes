@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#020202"
+    android:background="#333333"
     tools:context=".SplashScreenActivity">
 
     <ImageView
         android:id="@+id/splash_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/never_give_up"
+        android:src="@drawable/famous_quotes_splash_screen"
         android:animateLayoutChanges="true"
         />
 
