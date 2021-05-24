@@ -10,12 +10,14 @@ import uz.texnopos.famousquotes.R
 import uz.texnopos.famousquotes.authors.adapters.AuthorsRVAdapter
 import uz.texnopos.famousquotes.data.entities.Author
 import kotlinx.android.synthetic.main.fragment_authors.*
+import uz.texnopos.famousquotes.data.dao.CitataDao
+import uz.texnopos.famousquotes.data.database.CitataDatabase
 
 class AuthorsFragment : Fragment(R.layout.fragment_authors), AuthorView {
 
     private lateinit var navController: NavController
     private val myAdapter : AuthorsRVAdapter = AuthorsRVAdapter()
-    private lateinit var dao: uz.texnopos.famousquotes.data.dao.CitataDao
+    private lateinit var dao: CitataDao
     private lateinit var authorPresenter: AuthorPresenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -23,7 +25,7 @@ class AuthorsFragment : Fragment(R.layout.fragment_authors), AuthorView {
         navController = Navigation.findNavController(view)
         authorsRV.adapter = myAdapter
 
-        dao = uz.texnopos.famousquotes.data.database.CitataDatabase.getInstance(requireContext()).dao()
+        dao = CitataDatabase.getInstance(requireContext()).dao()
         authorPresenter = AuthorPresenter(dao, this)
         authorPresenter.getAllAuthors()
 

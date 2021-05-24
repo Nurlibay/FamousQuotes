@@ -12,12 +12,13 @@ import uz.texnopos.famousquotes.R
 import uz.texnopos.famousquotes.data.entities.Theme
 import uz.texnopos.famousquotes.themes.adapters.ThemeRVAdapter
 import kotlinx.android.synthetic.main.fragment_theme.*
+import uz.texnopos.famousquotes.data.dao.CitataDao
 
 class ThemeFragment : Fragment(R.layout.fragment_theme), ThemeView {
 
     private lateinit var navController: NavController
     private val myAdapter: ThemeRVAdapter = ThemeRVAdapter()
-    private lateinit var dao: uz.texnopos.famousquotes.data.dao.CitataDao
+    private lateinit var dao: CitataDao
     private lateinit var themePresenter: ThemePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {

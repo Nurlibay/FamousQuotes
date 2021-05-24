@@ -12,16 +12,18 @@ import uz.texnopos.famousquotes.items_space.MarginItemDecoration
 import uz.texnopos.famousquotes.data.entities.CitataWithAuthor
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import uz.texnopos.famousquotes.R
+import uz.texnopos.famousquotes.data.dao.CitataDao
+import uz.texnopos.famousquotes.data.database.CitataDatabase
 
 class FavoriteFragment : Fragment(R.layout.fragment_favorite), FavoriteView {
 
     private val myAdapter : FavoriteListAdapter = FavoriteListAdapter()
-    private lateinit var dao : uz.texnopos.famousquotes.data.dao.CitataDao
+    private lateinit var dao : CitataDao
     private lateinit var favoritePresenter: FavoritePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dao = uz.texnopos.famousquotes.data.database.CitataDatabase.getInstance(requireContext()).dao()
+        dao = CitataDatabase.getInstance(requireContext()).dao()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,12 +32,12 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite), FavoriteView {
         favoriteListRV.addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.margin_standard)))
         favoritePresenter = FavoritePresenter(dao, this)
         favoritePresenter.getFavorites()
-
+        
         // Fav icon clicked
         myAdapter.setOnFavIconClickListener {citata, position ->
 
             myAdapter.notifyItemRemoved(position)
-            myAdapter.notifyItemRangeChanged(0, myAdapter.models.size)
+            myAdapter.notifyItemRangeChanged(position, myAdapter.models.size)
             //myAdapter.notifyDataSetChanged()
 
             favoritePresenter.setFavorite(citata)
@@ -65,7 +67,7 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite), FavoriteView {
             startActivity(shareIntent)
         }
     }
-
+    
     override fun setData(models: List<CitataWithAuthor>) {
         myAdapter.models = models
     }

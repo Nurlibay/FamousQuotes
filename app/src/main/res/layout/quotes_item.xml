@@ -59,6 +59,7 @@
                     android:padding="8dp"
                     android:layout_margin="10dp"
                     android:src="@drawable/ic_favorite_not_marked"
+
                     />
 
                 <androidx.appcompat.widget.AppCompatImageView

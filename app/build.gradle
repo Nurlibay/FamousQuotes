@@ -93,5 +93,5 @@ dependencies {
     compile 'com.github.jd-alexander:LikeButton:0.2.3'
 
     // lottie
-    //implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation 'com.airbnb.android:lottie:3.5.0'
 }

@@ -16,6 +16,8 @@ import uz.texnopos.famousquotes.data.entities.CitataWithAuthor
 import uz.texnopos.famousquotes.items_space.MarginItemDecoration
 import uz.texnopos.famousquotes.themes.adapters.ThemeQuotesAdapter
 import kotlinx.android.synthetic.main.fragment_author_quotes.*
+import uz.texnopos.famousquotes.data.dao.CitataDao
+import uz.texnopos.famousquotes.data.database.CitataDatabase
 
 class AuthorQuotesFragment : Fragment(R.layout.fragment_author_quotes), AuthorQuotesView {
 
@@ -23,12 +25,12 @@ class AuthorQuotesFragment : Fragment(R.layout.fragment_author_quotes), AuthorQu
     // private val myAdapter : AuthorQuotesAdapter = AuthorQuotesAdapter()
     private val myAdapter : ThemeQuotesAdapter = ThemeQuotesAdapter()
     private lateinit var authorQuotesPresenter: AuthorQuotesPresenter
-    private lateinit var dao: uz.texnopos.famousquotes.data.dao.CitataDao
+    private lateinit var dao: CitataDao
     private val args: AuthorQuotesFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dao = uz.texnopos.famousquotes.data.database.CitataDatabase.getInstance(requireContext()).dao()
+        dao = CitataDatabase.getInstance(requireContext()).dao()
 
         // Set title bar
         (activity as MainActivity?)!!.setActionBarTitle(args.authorName)

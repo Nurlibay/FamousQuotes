@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -16,20 +17,22 @@ import uz.texnopos.famousquotes.data.entities.CitataWithAuthor
 import uz.texnopos.famousquotes.items_space.MarginItemDecoration
 import uz.texnopos.famousquotes.themes.adapters.ThemeQuotesAdapter
 import kotlinx.android.synthetic.main.fragment_theme_quotes.*
+import uz.texnopos.famousquotes.data.dao.CitataDao
+import uz.texnopos.famousquotes.data.database.CitataDatabase
 
 class ThemeQuotesFragment : Fragment(R.layout.fragment_theme_quotes), ThemeQuotesView {
 
     //todo private lateinit var settings: Settings
     private val myAdapter: ThemeQuotesAdapter = ThemeQuotesAdapter()
-    private lateinit var dao: uz.texnopos.famousquotes.data.dao.CitataDao
+    private lateinit var dao: CitataDao
     private lateinit var themeQuotesPresenter: ThemeQuotesPresenter
     private val args: ThemeQuotesFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dao = uz.texnopos.famousquotes.data.database.CitataDatabase.getInstance(requireContext()).dao()
+        dao = CitataDatabase.getInstance(requireContext()).dao()
         //Set title bar
-        (requireActivity() as MainActivity).setActionBarTitle(args.themeName)
+        (requireContext() as MainActivity).setActionBarTitle(args.themeName)
         //setHasOptionsMenu(true)
         //settings = Settings(requireContext())
     }
@@ -63,7 +66,7 @@ class ThemeQuotesFragment : Fragment(R.layout.fragment_theme_quotes), ThemeQuote
             val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText("EditText", "$citataText \n ~ $authorName")
             clipboard.setPrimaryClip(clip)
-            Toast.makeText(context, "Successful copied !", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Successful copied !", Toast.LENGTH_SHORT).show()
         }
 
         // share icon click event
