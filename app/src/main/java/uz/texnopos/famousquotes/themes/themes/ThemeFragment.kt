@@ -13,6 +13,7 @@ import uz.texnopos.famousquotes.data.entities.Theme
 import uz.texnopos.famousquotes.themes.adapters.ThemeRVAdapter
 import kotlinx.android.synthetic.main.fragment_theme.*
 import uz.texnopos.famousquotes.data.dao.CitataDao
+import uz.texnopos.famousquotes.data.database.CitataDatabase
 
 class ThemeFragment : Fragment(R.layout.fragment_theme), ThemeView {
 
@@ -70,11 +71,11 @@ class ThemeFragment : Fragment(R.layout.fragment_theme), ThemeView {
             navController.navigate(action)
         }
 
-        dao = uz.texnopos.famousquotes.data.database.CitataDatabase.getInstance(requireContext()).dao()
+        dao = CitataDatabase.getInstance(requireContext()).dao()
         themePresenter = ThemePresenter(dao, this)
         themePresenter.getAllThemes()
     }
-
+    
     override fun setData(models: List<Theme>) {
         myAdapter.models = models
     }

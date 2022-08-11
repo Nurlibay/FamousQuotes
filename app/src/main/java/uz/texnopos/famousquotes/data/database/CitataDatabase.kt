@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import uz.texnopos.famousquotes.data.dao.CitataDao
 import uz.texnopos.famousquotes.data.entities.Author
 import uz.texnopos.famousquotes.data.entities.Citata
 import uz.texnopos.famousquotes.data.entities.Theme
@@ -12,19 +13,19 @@ import uz.texnopos.famousquotes.data.entities.Theme
 abstract class CitataDatabase: RoomDatabase() {
 
     companion object {
-        lateinit var INSTANCE: uz.texnopos.famousquotes.data.database.CitataDatabase
-        fun getInstance(context: Context) : uz.texnopos.famousquotes.data.database.CitataDatabase {
-            if (!uz.texnopos.famousquotes.data.database.CitataDatabase.Companion::INSTANCE.isInitialized) {
-                uz.texnopos.famousquotes.data.database.CitataDatabase.Companion.INSTANCE = Room.databaseBuilder(
-                    context, uz.texnopos.famousquotes.data.database.CitataDatabase::class.java,
+        lateinit var INSTANCE: CitataDatabase
+        fun getInstance(context: Context) :CitataDatabase {
+            if (!Companion::INSTANCE.isInitialized) {
+                INSTANCE = Room.databaseBuilder(
+                    context, CitataDatabase::class.java,
                     "FamousPeopleQuotes.db")
                     .createFromAsset("FamousPeopleQuotes.db")
                     .allowMainThreadQueries()
                     .build()
             }
-            return uz.texnopos.famousquotes.data.database.CitataDatabase.Companion.INSTANCE
+            return INSTANCE
         }
     }
 
-    abstract fun dao(): uz.texnopos.famousquotes.data.dao.CitataDao
+    abstract fun dao(): CitataDao
 }

@@ -1,5 +1,6 @@
 package uz.texnopos.famousquotes.themes.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,7 @@ class ThemeQuotesAdapter : RecyclerView.Adapter<ThemeQuotesAdapter.ThemeQuotesVi
 //            itemView.tvAuthor.textSize = textSize
             if (citataModel.citata.isFavorite == 0) {
                 itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_not_marked)
+                Log.d("tekseriw", citataModel.citata.isFavorite.toString())
 
             } else {
                 itemView.favoriteIcon.setImageResource(R.drawable.ic_favorite_marked)
